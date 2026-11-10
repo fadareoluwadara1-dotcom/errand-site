@@ -1,1 +1,787 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Errand Service</title>
+<meta name="description" content="Request printing, stationery, food and everyday essentials on LAUTECH campus and we bring them to you.">
+<style>
+
+:root{--navy:#0b1f4b;--navy2:#13307a;--gold:#f59e0b;--gold2:#d97706;--grey:#f3f4f6;--text:#1f2937;--muted:#6b7280;--white:#fff;--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:var(--white);line-height:1.55}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+section{padding:48px 0}
+section.alt{background:var(--grey)}
+h1,h2,h3{color:var(--navy);line-height:1.2}
+h2{font-size:1.6rem;text-align:center;margin-bottom:6px}
+.sub{text-align:center;color:var(--muted);margin-bottom:28px}
+.btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:700;padding:13px 22px;border-radius:999px;background:var(--gold);color:var(--navy);text-align:center}
+.btn:hover{background:var(--gold2);color:#fff}
+.btn.ghost{background:transparent;border:2px solid #fff;color:#fff}
+.btn.ghost:hover{background:#fff;color:var(--navy)}
+.btn.wa{background:#25d366;color:#fff}
+.btn.wa:hover{background:#1ea952}
+#announce{background:var(--gold);color:var(--navy);text-align:center;padding:8px 12px;font-weight:600;font-size:.92rem}
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff}
+.bar{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;min-width:0}
+.brand img{height:36px;width:36px;border-radius:8px;object-fit:cover;background:#fff}
+.brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:48vw}
+nav{display:none;position:absolute;top:60px;left:0;right:0;background:var(--navy);padding:8px 16px 16px;flex-direction:column;gap:4px}
+nav.open{display:flex}
+nav a{padding:10px 4px;border-bottom:1px solid rgba(255,255,255,.12)}
+nav .btn{margin-top:8px;border:0}
+#menuBtn{background:none;border:0;color:#fff;font-size:1.7rem;cursor:pointer;padding:6px 10px}
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:64px 0;text-align:center}
+.hero h1{color:#fff;font-size:2rem;margin-bottom:14px}
+.hero p{max-width:620px;margin:0 auto 24px;color:#dbe4ff;font-size:1.05rem}
+.hero .btns{display:flex;flex-direction:column;gap:12px;max-width:320px;margin:0 auto}
+.grid{display:grid;gap:16px;grid-template-columns:1fr}
+.card{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:0 2px 10px rgba(11,31,75,.08)}
+.step .num{display:inline-flex;width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:800;align-items:center;justify-content:center;margin-bottom:10px}
+.step h3{font-size:1rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.95rem}
+.svc{text-align:center}
+.svc .ic{font-size:2.2rem;height:56px;display:flex;align-items:center;justify-content:center}
+.svc .ic img{height:56px;width:56px;object-fit:cover;border-radius:12px}
+.svc h3{font-size:1rem;margin:6px 0 4px}
+.svc p{color:var(--muted);font-size:.9rem}
+.shot img{width:100%;height:190px;object-fit:cover;border-radius:10px;margin-bottom:10px;background:var(--grey)}
+.shot .d{color:var(--muted);font-size:.85rem}
+.stars{color:var(--gold2);letter-spacing:2px}
+.rev p{margin:8px 0;font-size:.95rem}
+.rev .who{font-weight:700;color:var(--navy);font-size:.9rem}
+.empty{text-align:center;color:var(--muted);padding:12px}
+.contact{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.cta{background:var(--navy);color:#fff;text-align:center}
+.cta h2{color:#fff;margin-bottom:18px}
+footer{background:#071433;color:#c7d2fe;padding:32px 0 20px;font-size:.9rem}
+footer .cols{display:grid;gap:18px;margin-bottom:18px}
+footer b{color:#fff}
+footer a{text-decoration:underline;cursor:pointer;background:none;border:0;color:inherit;font:inherit}
+.copy{border-top:1px solid rgba(255,255,255,.15);padding-top:14px;text-align:center}
+dialog{max-width:560px;width:92vw;border:0;border-radius:14px;padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog pre{white-space:pre-wrap;font-family:inherit;margin:12px 0;max-height:60vh;overflow:auto}
+@media(min-width:760px){
+  #menuBtn{display:none}
+  nav{display:flex!important;position:static;flex-direction:row;align-items:center;padding:0;gap:18px;background:none}
+  nav a{border:0;padding:0;font-size:.95rem}
+  nav .btn{margin:0;padding:10px 18px}
+  .hero{padding:96px 0}.hero h1{font-size:3rem}
+  .hero .btns{flex-direction:row;max-width:none;justify-content:center}
+  .grid.c4{grid-template-columns:repeat(4,1fr)}
+  .grid.c3{grid-template-columns:repeat(3,1fr)}
+  footer .cols{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ===== order view ===== */
+#v-order .wrap{max-width:720px;margin:0 auto;padding:18px 16px 60px}
+#v-order h1{color:var(--navy);font-size:1.5rem;margin-bottom:4px}
+#v-order .lead{color:var(--muted);margin-bottom:16px}
+#v-order fieldset{border:0;background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(11,31,75,.07)}
+#v-order legend{float:left;width:100%;font-weight:800;color:var(--navy);margin-bottom:12px;font-size:1.02rem}
+#v-order fieldset>*:not(legend){clear:both}
+#v-order .f{margin-bottom:12px}
+#v-order label{display:block;font-weight:600;font-size:.92rem;margin-bottom:4px}
+#v-order label small{font-weight:400;color:var(--muted)}
+#v-order input,#v-order select,#v-order textarea{width:100%;font:inherit;padding:12px;border:1.5px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--text)}
+#v-order input:focus,#v-order select:focus,#v-order textarea:focus{outline:3px solid rgba(245,158,11,.4);border-color:var(--gold2)}
+#v-order textarea{min-height:110px;resize:vertical}
+#v-order .err{color:var(--red);font-size:.85rem;margin-top:4px;min-height:0}
+#v-order .invalid{border-color:var(--red)}
+#v-order .row{display:grid;gap:12px;grid-template-columns:1fr}
+#v-order .opt{display:flex;gap:10px;align-items:flex-start;border:1.5px solid #cbd5e1;border-radius:10px;padding:12px;margin-bottom:8px;cursor:pointer;font-weight:600}
+#v-order .opt input{width:auto;margin-top:4px}
+#v-order .opt span small{display:block;font-weight:400;color:var(--muted)}
+#v-order .opt:has(input:checked){border-color:var(--gold2);background:#fffbeb}
+#v-order .chk{display:flex;gap:8px;align-items:center;font-weight:400;font-size:.9rem;margin-top:6px}
+#v-order .chk input{width:auto}
+#v-order .files{font-size:.85rem;color:var(--muted);margin-top:4px}
+#v-order .files li{list-style:none;display:flex;justify-content:space-between;gap:8px;padding:4px 0}
+#v-order .files button{background:none;border:0;color:var(--red);cursor:pointer;font:inherit}
+#v-order .btn{width:100%;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:1.05rem;padding:16px;border-radius:999px;background:var(--gold);color:var(--navy)}
+#v-order .btn:hover{background:var(--gold2);color:#fff}
+#v-order .btn:disabled{opacity:.6;cursor:not-allowed}
+#v-order .prog{height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin:10px 0 4px;display:none}
+#v-order .prog i{display:block;height:100%;width:0;background:var(--gold2);transition:width .3s}
+#v-order #status{font-size:.9rem;color:var(--muted);text-align:center;min-height:20px}
+#v-order #formErr{background:#fee2e2;color:var(--red);border-radius:10px;padding:12px;margin-bottom:12px;display:none;font-weight:600}
+#v-order .ok{background:#fff;border-radius:var(--radius);padding:24px;text-align:center;box-shadow:0 2px 8px rgba(11,31,75,.07)}
+#v-order .ok .tick{font-size:3rem}
+#v-order .ok h2{color:var(--green);margin:6px 0 10px}
+#v-order .ref{display:inline-block;background:var(--grey);border:2px dashed var(--gold2);border-radius:10px;padding:10px 16px;font-size:1.25rem;font-weight:800;letter-spacing:1px;margin:10px 0;color:var(--navy);word-break:break-all}
+#v-order .ok a.btn2,#v-order .ok button.btn2{display:inline-block;margin:6px;padding:12px 18px;border-radius:999px;border:0;background:var(--navy);color:#fff;text-decoration:none;font:inherit;font-weight:700;cursor:pointer}
+@media(min-width:640px){#v-order .row{grid-template-columns:1fr 1fr}}
+/* ===== track view ===== */
+#v-track .wrap{max-width:720px;margin:0 auto;padding:18px 16px 60px}
+#v-track h1{color:var(--navy);font-size:1.5rem;margin-bottom:4px}
+#v-track .lead{color:var(--muted);margin-bottom:16px}
+#v-track .card{background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(11,31,75,.07)}
+#v-track .card h2{font-size:1.02rem;color:var(--navy);margin-bottom:10px}
+#v-track label{display:block;font-weight:600;font-size:.92rem;margin-bottom:4px}
+#v-track input,#v-track textarea,#v-track select{width:100%;font:inherit;padding:12px;border:1.5px solid #cbd5e1;border-radius:10px;margin-bottom:12px}
+#v-track textarea{min-height:90px}
+#v-track input:focus,#v-track textarea:focus{outline:3px solid rgba(245,158,11,.4);border-color:var(--gold2)}
+#v-track .btn{border:0;cursor:pointer;font:inherit;font-weight:800;padding:13px 20px;border-radius:999px;background:var(--gold);color:var(--navy);width:100%}
+#v-track .btn:hover{background:var(--gold2);color:#fff}
+#v-track .btn:disabled{opacity:.6}
+#v-track .btn.sec{background:var(--navy);color:#fff}
+#v-track .btn.red{background:#fee2e2;color:var(--red)}
+#v-track .btn.wa{background:#25d366;color:#fff;display:block;text-align:center;text-decoration:none;padding:13px}
+#v-track .msg{padding:12px;border-radius:10px;margin-bottom:12px;font-weight:600;display:none}
+#v-track .msg.err{background:#fee2e2;color:var(--red);display:block}
+#v-track .msg.ok{background:#dcfce7;color:var(--green);display:block}
+#v-track .pill{display:inline-block;padding:5px 14px;border-radius:999px;background:var(--navy);color:#fff;font-weight:700;font-size:.9rem}
+#v-track .kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #eef0f3;font-size:.95rem}
+#v-track .kv:last-child{border:0}
+#v-track .kv span:first-child{color:var(--muted)}
+#v-track .kv span:last-child{text-align:right;font-weight:600}
+#v-track .total{font-size:1.1rem}
+#v-track .total span{color:var(--navy)!important}
+#v-track .tl{list-style:none;border-left:3px solid var(--gold);margin-left:8px;padding-left:16px}
+#v-track .tl li{position:relative;padding:0 0 14px}
+#v-track .tl li::before{content:"";position:absolute;left:-23px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--gold2)}
+#v-track .tl small{display:block;color:var(--muted)}
+#v-track .row2{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+#v-track .stars{display:flex;gap:6px;margin-bottom:12px}
+#v-track .stars button{font-size:2rem;background:none;border:0;cursor:pointer;color:#cbd5e1;padding:0}
+#v-track .stars button.on{color:var(--gold)}
+#v-track .note{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+
+#v-order,#v-track{background:var(--grey);min-height:70vh}
+#v-order h2,#v-track h2{text-align:left}
+#v-order .ok h2{text-align:center}
+#v-track .stars{letter-spacing:0}
+
+</style>
+</head>
+<body>
+<div id="announce" hidden></div>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#/"><img id="logo" alt="" hidden><span id="bizName">Campus Errand Service</span></a>
+    <button id="menuBtn" aria-label="Menu" aria-expanded="false">☰</button>
+    <nav id="nav" aria-label="Main">
+      <a href="#/">Home</a>
+      <a href="#" data-sec="how">How It Works</a>
+      <a href="#" data-sec="services">Services</a>
+      <a href="#" data-sec="reviews">Customer Reviews</a>
+      <a href="#" data-sec="contact">Contact Us</a>
+      <a href="#/track">Track Order</a>
+      <a class="btn" href="#/order">Place an Order</a>
+    </nav>
+  </div>
+</header>
+
+
+<main>
+<div id="v-home">
+<section class="hero" id="home">
+  <div class="wrap">
+    <h1 id="heroH">Need Something on Campus? We'll Get It to You.</h1>
+    <p id="heroP">From exercise books and printing to food and everyday essentials, request what you need and let us handle the rest.</p>
+    <div class="btns">
+      <a class="btn" href="#/order">Place an Order</a>
+      <a class="btn ghost" href="#" data-sec="how">How It Works</a>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How It Works</h2>
+    <p class="sub">Four simple steps from request to delivery.</p>
+    <div class="grid c4">
+      <div class="card step"><div class="num">1</div><h3>Submit Your Request</h3><p>Tell us what you need through our online request form.</p></div>
+      <div class="card step"><div class="num">2</div><h3>Request Confirmation</h3><p>Our administrator reviews your request, confirms availability and communicates the price.</p></div>
+      <div class="card step"><div class="num">3</div><h3>Fulfilment</h3><p>An assigned delivery personnel obtains your requested product or service.</p></div>
+      <div class="card step"><div class="num">4</div><h3>Delivery</h3><p>Your order is brought to your preferred location or designated collection point.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="alt">
+  <div class="wrap">
+    <h2>Our Services</h2>
+    <p class="sub">Choose what you need and we take it from there.</p>
+    <div class="grid c4" id="svcGrid"><p class="empty">Loading services…</p></div>
+  </div>
+</section>
+
+<section id="showcase" hidden>
+  <div class="wrap">
+    <h2>Completed Orders</h2>
+    <p class="sub">A look at orders we have delivered.</p>
+    <div class="grid c3" id="shotGrid"></div>
+  </div>
+</section>
+
+<section id="reviews" class="alt">
+  <div class="wrap">
+    <h2>Customer Reviews</h2>
+    <p class="sub">What students say after their orders are delivered.</p>
+    <div class="grid c3" id="revGrid"><p class="empty">Loading reviews…</p></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact Us</h2>
+    <p class="sub">Questions about an order? Talk to us.</p>
+    <div class="contact" id="contactBox"></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Why Leave What You're Doing When We Can Bring It to You?</h2>
+    <a class="btn" href="#/order">Make Your Request</a>
+  </div>
+</section>
+</div>
+<div id="v-order" hidden>
+<div class="wrap">
+<div id="formView">
+  <h1>Place an Order</h1>
+  <p class="lead">Tell us what you need. No account required.</p>
+  <div id="formErr" role="alert"></div>
+
+  <form id="f" novalidate>
+    <fieldset>
+      <legend>A. Your Information</legend>
+      <div class="f"><label for="name">Full Name</label><input id="name" autocomplete="name" maxlength="100"><div class="err" id="e_name"></div></div>
+      <div class="row">
+        <div class="f"><label for="phone">Phone Number</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08012345678" maxlength="20"><div class="err" id="e_phone"></div></div>
+        <div class="f"><label for="wa">WhatsApp Number</label><input id="wa" type="tel" inputmode="tel" placeholder="08012345678" maxlength="20"><div class="err" id="e_wa"></div>
+          <label class="chk"><input type="checkbox" id="same"> Same as phone number</label></div>
+      </div>
+      <div class="row">
+        <div class="f"><label for="dept">Department <small>(optional)</small></label><input id="dept" maxlength="100"></div>
+        <div class="f"><label for="level">Level <small>(optional)</small></label>
+          <select id="level"><option value="">Select level</option><option>100</option><option>200</option><option>300</option><option>400</option><option>500</option><option>600</option><option>Postgraduate</option></select></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>B. Your Request</legend>
+      <div class="f"><label for="svc">What do you need?</label><select id="svc"><option value="">Loading…</option></select><div class="err" id="e_svc"></div></div>
+      <div class="f"><label for="desc">Describe your request</label><textarea id="desc" maxlength="2000" placeholder="Be specific: sizes, colours, number of pages, brand, etc."></textarea><div class="err" id="e_desc"></div></div>
+      <div class="f"><label for="qty">Quantity</label><input id="qty" type="number" inputmode="numeric" min="1" max="10000" value="1"><div class="err" id="e_qty"></div></div>
+      <div class="f"><label for="docs">Supporting files <small>(PDF or images, up to 5 files, 5MB each)</small></label>
+        <input id="docs" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" multiple>
+        <ul class="files" id="docList"></ul><div class="err" id="e_docs"></div></div>
+      <div class="f"><label for="refimg">Reference image <small>(optional)</small></label>
+        <input id="refimg" type="file" accept="image/jpeg,image/png,image/webp"><div class="err" id="e_refimg"></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>C. Location</legend>
+      <div class="f"><label for="fac">Faculty or Building</label><input id="fac" maxlength="120"><div class="err" id="e_fac"></div></div>
+      <div class="f"><label for="land">Department or Nearby Landmark <small>(optional)</small></label><input id="land" maxlength="120"></div>
+      <div class="f"><label for="room">Specific Classroom or Collection Point <small>(optional for delivery)</small></label><input id="room" maxlength="120"><div class="err" id="e_room"></div></div>
+      <div class="f" id="locBox"><label for="loc">Preferred Delivery Location</label><input id="loc" maxlength="200" placeholder="Where exactly should we bring it?"><div class="err" id="e_loc"></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>D. Fulfilment Preference</legend>
+      <label class="opt"><input type="radio" name="method" value="delivery" checked><span>Delivery to my current location</span></label>
+      <label class="opt"><input type="radio" name="method" value="collection"><span>Collection from a designated collection point<small>Enter the collection point above.</small></span></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>E. Submit</legend>
+      <p class="files" style="margin-bottom:10px">You will be told the price before you pay anything. You approve it before we proceed.</p>
+      <button class="btn" id="submit" type="submit">SUBMIT MY REQUEST</button>
+      <div class="prog" id="prog"><i id="progBar"></i></div>
+      <div id="status" aria-live="polite"></div>
+    </fieldset>
+  </form>
+</div>
+
+<div id="doneView" class="ok" hidden>
+  <div class="tick">✅</div>
+  <h2>Your request has been received successfully!</h2>
+  <p>Our administrator will review your request and contact you shortly through WhatsApp or phone.</p>
+  <p style="margin-top:12px">Your order reference is:</p>
+  <div class="ref" id="refOut"></div>
+  <p class="files">Keep this reference safe. You need it, with your phone number, to track your order.</p>
+  <button class="btn2" id="copyRef">Copy reference</button>
+  <a class="btn2" id="trackLink" href="#/track">Track my order</a>
+  <a class="btn2" href="#/">Back to home</a>
+</div>
+</div>
+</div>
+<div id="v-track" hidden>
+<div class="wrap">
+  <h1>Track Your Order</h1>
+  <p class="lead">Enter your order reference and the phone number you used.</p>
+
+  <form class="card" id="lookup">
+    <div class="msg" id="lookMsg" role="alert"></div>
+    <label for="ref">Order reference</label><input id="ref" placeholder="LAU-XXXXXXXXXXXX" autocapitalize="characters" autocomplete="off">
+    <label for="ph">Phone number</label><input id="ph" type="tel" inputmode="tel" placeholder="08012345678">
+    <button class="btn" id="goBtn" type="submit">Track order</button>
+  </form>
+
+  <div id="result" hidden>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+        <h2 style="margin:0" id="rRef"></h2><span class="pill" id="rStatus"></span>
+      </div>
+      <div style="margin-top:10px" id="rInfo"></div>
+    </div>
+
+    <div class="card" id="quoteCard" hidden>
+      <h2>Price quotation</h2>
+      <div id="quoteRows"></div>
+      <div class="msg" id="quoteMsg"></div>
+      <div id="quoteBtns">
+        <p class="note">Approve to let us proceed. We will not add charges after you approve.</p>
+        <div class="row2"><button class="btn" id="approveBtn">Approve quote</button><button class="btn red" id="declineBtn">Decline</button></div>
+      </div>
+    </div>
+
+    <div class="card" id="dpCard" hidden>
+      <h2>Your delivery person</h2>
+      <div id="dpInfo"></div>
+      <p class="note" style="margin-top:8px">Pay only the confirmed total, and only to the delivery person assigned to your order.</p>
+      <a class="btn wa" id="dpWa" target="_blank" rel="noopener">Message on WhatsApp</a>
+    </div>
+
+    <div class="card"><h2>Order progress</h2><ul class="tl" id="tl"></ul></div>
+
+    <div class="card" id="reviewCard" hidden>
+      <h2>How was your order?</h2>
+      <div class="msg" id="revMsg"></div>
+      <div class="stars" id="stars"></div>
+      <textarea id="revText" maxlength="1000" placeholder="Tell us about your experience (optional)"></textarea>
+      <button class="btn" id="revBtn">Submit review</button>
+      <p class="note" style="margin-top:8px">Reviews are shown publicly only after the administrator approves them.</p>
+    </div>
+
+    <div class="card">
+      <h2>Having a problem?</h2>
+      <div class="msg" id="cmpMsg"></div>
+      <textarea id="cmpText" maxlength="2000" placeholder="Describe the problem with this order"></textarea>
+      <button class="btn sec" id="cmpBtn">Submit complaint</button>
+    </div>
+  </div>
+</div>
+</div>
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><b id="fName">Campus Errand Service</b><br>LAUTECH, Ogbomoso</div>
+      <div id="fContact"></div>
+      <div><button id="privBtn">Privacy Policy</button><br><button id="termsBtn">Terms and Conditions</button></div>
+    </div>
+    <div class="copy">© <span id="yr"></span> <span id="fName2">Campus Errand Service</span>. All rights reserved.</div>
+  </div>
+</footer>
+
+<dialog id="dlg"><h3 id="dlgT"></h3><pre id="dlgB"></pre><button class="btn" id="dlgX">Close</button></dialog>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script>
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const cfg = window.APP_CONFIG || {};
+const configured = cfg.SUPABASE_URL && !cfg.SUPABASE_URL.startsWith('PASTE');
+const sb = configured ? supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY) : null;
+
+// ---------- one-link router: #/  #/order  #/track ----------
+const hooks = {};
+const VIEWS = ['home', 'order', 'track'];
+let pendingSec = null;
+function getParams() { return new URLSearchParams(location.hash.split('?')[1] || ''); }
+function route() {
+  const raw = (location.hash.split('?')[0] || '').replace(/^#\/?/, '');
+  const name = VIEWS.includes(raw) ? raw : 'home';
+  VIEWS.forEach(v => { $('v-' + v).hidden = v !== name; });
+  if (hooks[name]) hooks[name]();
+  if (name === 'home' && pendingSec) { const el = $(pendingSec); pendingSec = null; if (el) { el.scrollIntoView(); return; } }
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-sec]'); if (!a) return;
+  e.preventDefault();
+  $('nav').classList.remove('open');
+  if (!$('v-home').hidden) $(a.dataset.sec).scrollIntoView({ behavior: 'smooth' });
+  else { pendingSec = a.dataset.sec; location.hash = '#/'; }
+});
+
+// ===== HOME =====
+(function () {
+
+const waNumber = n => { let d = String(n||'').replace(/\D/g,''); if (d.startsWith('0')) d = '234' + d.slice(1); return d; };
+const stars = r => '★'.repeat(r) + '☆'.repeat(5 - r);
+
+// mobile menu
+$('menuBtn').onclick = () => { const o = $('nav').classList.toggle('open'); $('menuBtn').setAttribute('aria-expanded', o); };
+$('nav').addEventListener('click', e => { if (e.target.tagName === 'A') $('nav').classList.remove('open'); });
+$('yr').textContent = new Date().getFullYear();
+
+const mediaUrl = p => sb.storage.from('site-media').getPublicUrl(p).data.publicUrl;
+
+let settings = {};
+function showDialog(title, body) {
+  $('dlgT').textContent = title;
+  $('dlgB').textContent = body || 'This has not been published yet.';
+  $('dlg').showModal();
+}
+$('privBtn').onclick = () => showDialog('Privacy Policy', settings.privacy_policy);
+$('termsBtn').onclick = () => showDialog('Terms and Conditions', settings.terms_conditions);
+$('dlgX').onclick = () => $('dlg').close();
+
+function applySettings(s) {
+  settings = s || {};
+  if (s.business_name) {
+    document.title = s.business_name;
+    ['bizName','fName','fName2'].forEach(id => $(id).textContent = s.business_name);
+  }
+  if (s.logo_path) { $('logo').src = mediaUrl(s.logo_path); $('logo').hidden = false; }
+  if (s.announcement) { $('announce').textContent = s.announcement; $('announce').hidden = false; }
+  if (s.hero_headline) $('heroH').textContent = s.hero_headline;
+  if (s.hero_subtext) $('heroP').textContent = s.hero_subtext;
+
+  const wa = waNumber(s.whatsapp_number);
+  let html = '';
+  if (wa) html += `<a class="btn wa" href="https://wa.me/${wa}?text=${encodeURIComponent('Hello, I need help with my order.')}" target="_blank" rel="noopener">Chat on WhatsApp</a>`;
+  if (s.phone_number) html += `<div>📞 <a href="tel:${esc(s.phone_number)}"><b>${esc(s.phone_number)}</b></a></div>`;
+  if (s.contact_email) html += `<div>✉️ <a href="mailto:${esc(s.contact_email)}">${esc(s.contact_email)}</a></div>`;
+  if (s.contact_address) html += `<div>📍 ${esc(s.contact_address)}</div>`;
+  $('contactBox').innerHTML = html || '<p class="empty">Contact details will be added soon.</p>';
+
+  let f = '';
+  if (s.phone_number) f += `Phone: ${esc(s.phone_number)}<br>`;
+  if (wa) f += `WhatsApp: <a href="https://wa.me/${wa}" target="_blank" rel="noopener">Chat with support</a><br>`;
+  if (s.contact_email) f += `Email: ${esc(s.contact_email)}`;
+  $('fContact').innerHTML = f || 'Contact details coming soon.';
+}
+
+async function load() {
+  if (!configured) {
+    $('svcGrid').innerHTML = '<p class="empty">Setup needed: open config.js and paste your Supabase URL and anon key.</p>';
+    $('revGrid').innerHTML = '';
+    return;
+  }
+  const [st, sv, gl, rv] = await Promise.all([
+    sb.from('site_settings').select('*').eq('id', 1).maybeSingle(),
+    sb.from('services').select('*').eq('is_active', true).order('sort_order'),
+    sb.from('public_gallery').select('*').order('completed_date', { ascending: false }).limit(12),
+    sb.from('public_reviews').select('*').order('created_at', { ascending: false }).limit(12)
+  ]);
+
+  if (st.data) applySettings(st.data);
+
+  if (sv.error) $('svcGrid').innerHTML = '<p class="empty">Could not load services. Please refresh.</p>';
+  else if (!sv.data.length) $('svcGrid').innerHTML = '<p class="empty">No services available right now.</p>';
+  else $('svcGrid').innerHTML = sv.data.map(s => `
+    <a class="card svc" href="#/order?service=${encodeURIComponent(s.id)}">
+      <div class="ic">${s.image_path ? `<img loading="lazy" alt="" src="${esc(mediaUrl(s.image_path))}">` : esc(s.icon || '🛍️')}</div>
+      <h3>${esc(s.name)}</h3><p>${esc(s.description || '')}</p>
+    </a>`).join('');
+
+  if (!gl.error && gl.data && gl.data.length) {
+    $('showcase').hidden = false;
+    $('shotGrid').innerHTML = gl.data.map(g => `
+      <div class="card shot">
+        <img loading="lazy" alt="${esc(g.title)}" src="${esc(mediaUrl(g.image_path))}">
+        <h3>${esc(g.title)}</h3>
+        ${g.description ? `<p>${esc(g.description)}</p>` : ''}
+        ${g.completed_date ? `<p class="d">Completed ${esc(new Date(g.completed_date).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'}))}</p>` : ''}
+        ${g.review_comment ? `<p class="d"><span class="stars">${stars(g.review_rating)}</span> “${esc(g.review_comment)}” - ${esc(g.review_name)}</p>` : ''}
+      </div>`).join('');
+  }
+
+  if (rv.error) $('revGrid').innerHTML = '<p class="empty">Could not load reviews.</p>';
+  else if (!rv.data.length) $('revGrid').innerHTML = '<p class="empty">No reviews yet. Be the first after your order is delivered.</p>';
+  else $('revGrid').innerHTML = rv.data.map(r => `
+    <div class="card rev"><div class="stars">${stars(r.rating)}</div>
+      ${r.comment ? `<p>${esc(r.comment)}</p>` : ''}<div class="who">${esc(r.customer_name)}</div></div>`).join('');
+}
+load();
+
+})();
+// ===== ORDER FORM =====
+(function () {
+
+
+const MAX_BYTES = 5 * 1024 * 1024, MAX_FILES = 5;
+const OK_TYPES = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
+const uploadFolder = crypto.randomUUID();      // random private folder for this order's files
+let idemKey = crypto.randomUUID();             // blocks duplicate submissions
+let docs = [];                                  // chosen supporting files
+let submitting = false;
+
+
+// services dropdown
+function preselect() {
+  const pre = getParams().get('service');
+  if (pre && [...$('svc').options].some(o => o.value === pre)) $('svc').value = pre;
+}
+hooks.order = preselect;
+async function loadServices() {
+  if (!sb) { $('svc').innerHTML = '<option value="">Setup needed (config.js)</option>'; return; }
+  const { data, error } = await sb.from('services').select('id,name').eq('is_active', true).order('sort_order');
+  if (error || !data || !data.length) { $('svc').innerHTML = '<option value="">No services available</option>'; return; }
+  $('svc').innerHTML = '<option value="">Select a service</option>' + data.map(s => `<option value="${s.id}">${s.name.replace(/</g,'&lt;')}</option>`).join('');
+  preselect();
+}
+loadServices();
+
+// same-as-phone
+$('same').onchange = () => { if ($('same').checked) { $('wa').value = $('phone').value; } };
+$('phone').oninput = () => { if ($('same').checked) $('wa').value = $('phone').value; };
+
+// delivery vs collection
+function method() { return document.querySelector('input[name=method]:checked').value; }
+document.querySelectorAll('input[name=method]').forEach(r => r.onchange = () => { $('locBox').style.display = method() === 'collection' ? 'none' : ''; });
+
+// file list UI
+function renderDocs() {
+  $('docList').innerHTML = docs.map((f, i) => `<li><span>${f.name.replace(/</g,'&lt;')} (${(f.size/1024).toFixed(0)} KB)</span><button type="button" data-i="${i}">Remove</button></li>`).join('');
+}
+$('docs').onchange = () => {
+  $('e_docs').textContent = '';
+  for (const f of $('docs').files) {
+    if (docs.length >= MAX_FILES) { $('e_docs').textContent = 'Maximum of 5 files.'; break; }
+    if (!OK_TYPES.includes(f.type)) { $('e_docs').textContent = `"${f.name}" is not a PDF or image.`; continue; }
+    if (f.type === 'application/pdf' && f.size > MAX_BYTES) { $('e_docs').textContent = `"${f.name}" is larger than 5MB.`; continue; }
+    docs.push(f);
+  }
+  $('docs').value = ''; renderDocs();
+};
+$('docList').onclick = e => { const b = e.target.closest('button'); if (b) { docs.splice(+b.dataset.i, 1); renderDocs(); } };
+
+// shrink big photos so uploads are fast on slow networks
+function prepare(file) {
+  return new Promise(resolve => {
+    if (!file.type.startsWith('image/') || file.size < 700 * 1024) {
+      return resolve({ blob: file, type: file.type, ext: ({'application/pdf':'pdf','image/jpeg':'jpg','image/png':'png','image/webp':'webp'})[file.type] });
+    }
+    const img = new Image(), url = URL.createObjectURL(file);
+    img.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(b => { URL.revokeObjectURL(url); resolve(b ? { blob: b, type: 'image/jpeg', ext: 'jpg' } : { blob: file, type: file.type, ext: 'jpg' }); }, 'image/jpeg', 0.8);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); resolve({ blob: file, type: file.type, ext: 'jpg' }); };
+    img.src = url;
+  });
+}
+
+function setErr(id, msg) { const e = $('e_' + id); if (e) e.textContent = msg || ''; const i = $(id); if (i) i.classList.toggle('invalid', !!msg); }
+const phoneOk = v => /^[0-9+ ()-]{7,20}$/.test(v) && v.replace(/\D/g, '').length >= 10;
+
+function validate() {
+  const v = { name: $('name').value.trim(), phone: $('phone').value.trim(), wa: $('wa').value.trim(),
+    svc: $('svc').value, desc: $('desc').value.trim(), qty: parseInt($('qty').value, 10),
+    fac: $('fac').value.trim(), room: $('room').value.trim(), loc: $('loc').value.trim() };
+  let bad = null;
+  const fail = (id, msg) => { setErr(id, msg); bad = bad || id; };
+  ['name','phone','wa','svc','desc','qty','fac','room','loc','refimg'].forEach(id => setErr(id, ''));
+  if (v.name.length < 2) fail('name', 'Enter your full name.');
+  if (!phoneOk(v.phone)) fail('phone', 'Enter a valid phone number (at least 10 digits).');
+  if (!phoneOk(v.wa)) fail('wa', 'Enter a valid WhatsApp number.');
+  if (!v.svc) fail('svc', 'Choose what you need.');
+  if (v.desc.length < 3) fail('desc', 'Describe your request.');
+  if (!(v.qty >= 1 && v.qty <= 10000)) fail('qty', 'Quantity must be at least 1.');
+  if (v.fac.length < 2) fail('fac', 'Enter your faculty or building.');
+  if (method() === 'collection') { if (v.room.length < 2) fail('room', 'Enter the collection point.'); }
+  else if (v.loc.length < 2) fail('loc', 'Enter where we should deliver.');
+  const rf = $('refimg').files[0];
+  if (rf && !rf.type.startsWith('image/')) fail('refimg', 'Reference must be an image.');
+  if (bad) { const el = $(bad); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus(); return null; }
+  return v;
+}
+
+function showFormError(msg) { $('formErr').textContent = msg; $('formErr').style.display = msg ? 'block' : 'none'; if (msg) window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+$('f').addEventListener('submit', async e => {
+  e.preventDefault();
+  if (submitting) return;
+  showFormError('');
+  if (!sb) return showFormError('This site is not set up yet. Please contact the administrator.');
+  const v = validate(); if (!v) return;
+
+  submitting = true; $('submit').disabled = true;
+  const rf = $('refimg').files[0];
+  const total = docs.length + (rf ? 1 : 0);
+  let done = 0;
+  const bar = $('progBar');
+  if (total) $('prog').style.display = 'block';
+  const tick = () => { done++; bar.style.width = Math.round(done / total * 100) + '%'; };
+
+  try {
+    const paths = []; let refPath = null;
+    const up = async (file, tag) => {
+      $('status').textContent = `Uploading file ${done + 1} of ${total}…`;
+      const p = await prepare(file);
+      if (p.blob.size > MAX_BYTES) throw new Error(`"${file.name}" is too large even after compression (max 5MB).`);
+      const path = `${uploadFolder}/${tag}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${p.ext}`;
+      const { error } = await sb.storage.from('order-uploads').upload(path, p.blob, { contentType: p.type, upsert: false });
+      if (error) throw new Error(`Upload failed for "${file.name}". Check your network and try again.`);
+      tick(); return path;
+    };
+    for (const f of docs) paths.push(await up(f, 'doc'));
+    if (rf) refPath = await up(rf, 'ref');
+
+    $('status').textContent = 'Saving your request…';
+    const payload = {
+      idempotency_key: idemKey,
+      customer_name: v.name, phone_number: v.phone, whatsapp_number: v.wa,
+      department: $('dept').value.trim(), level: $('level').value,
+      service_id: v.svc, request_description: v.desc, quantity: v.qty,
+      attachment_path: paths, reference_image_path: refPath,
+      faculty_or_building: v.fac, landmark: $('land').value.trim(), collection_point: v.room,
+      delivery_location: method() === 'collection' ? v.room : v.loc,
+      fulfilment_method: method()
+    };
+    const { data, error } = await sb.rpc('submit_order', { p_data: payload });
+    if (error) throw new Error(error.message || 'Could not submit. Please try again.');
+
+    $('refOut').textContent = data.order_reference;
+    $('trackLink').href = '#/track?ref=' + encodeURIComponent(data.order_reference);
+    $('formView').hidden = true; $('doneView').hidden = false;
+    window.scrollTo({ top: 0 });
+    idemKey = crypto.randomUUID();
+  } catch (err) {
+    showFormError(err.message || 'Something went wrong. Please try again.');
+    $('status').textContent = ''; $('prog').style.display = 'none'; bar.style.width = '0';
+    submitting = false; $('submit').disabled = false;
+  }
+});
+
+$('copyRef').onclick = async () => {
+  try { await navigator.clipboard.writeText($('refOut').textContent); $('copyRef').textContent = 'Copied ✓'; }
+  catch { $('copyRef').textContent = 'Select and copy it manually'; }
+};
+
+})();
+// ===== TRACK ORDER =====
+(function () {
+
+const naira = n => '₦' + Number(n || 0).toLocaleString('en-NG', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+const waNum = n => { let d = String(n || '').replace(/\D/g, ''); if (d.startsWith('0')) d = '234' + d.slice(1); return d; };
+const when = d => new Date(d).toLocaleString('en-NG', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+
+let REF = '', PHONE = '', rating = 0;   // kept in memory only, never saved
+
+
+hooks.track = () => { const q = getParams().get('ref'); if (q) $('ref').value = q.toUpperCase(); };
+
+function msg(el, text, ok) { el.className = 'msg ' + (text ? (ok ? 'ok' : 'err') : ''); el.textContent = text || ''; }
+
+async function track(showErrors = true) {
+  if (!sb) return msg($('lookMsg'), 'This site is not set up yet.');
+  const { data, error } = await sb.rpc('track_order', { p_reference: REF, p_phone: PHONE });
+  if (error) { if (showErrors) msg($('lookMsg'), error.message); return false; }
+  msg($('lookMsg'), ''); render(data); return true;
+}
+
+$('lookup').addEventListener('submit', async e => {
+  e.preventDefault();
+  REF = $('ref').value.trim().toUpperCase(); PHONE = $('ph').value.trim();
+  if (!REF || !PHONE) return msg($('lookMsg'), 'Enter both your order reference and phone number.');
+  $('goBtn').disabled = true; $('goBtn').textContent = 'Checking…';
+  await track();
+  $('goBtn').disabled = false; $('goBtn').textContent = 'Track order';
+});
+
+function render(o) {
+  $('result').hidden = false;
+  $('rRef').textContent = o.order_reference;
+  $('rStatus').textContent = o.status;
+  $('rInfo').innerHTML = [
+    ['Service', o.service_category], ['Request', o.request_description], ['Quantity', o.quantity],
+    ['Fulfilment', o.fulfilment_method === 'collection' ? 'Collection' : 'Delivery'],
+    ['Location', o.delivery_location], ['Placed', when(o.created_at)], ['Payment', o.payment_status]
+  ].map(([k, v]) => `<div class="kv"><span>${k}</span><span>${esc(v)}</span></div>`).join('');
+
+  // quotation
+  const hasQuote = o.confirmed_product_cost !== null && o.quote_status !== 'None';
+  $('quoteCard').hidden = !hasQuote;
+  if (hasQuote) {
+    $('quoteRows').innerHTML =
+      `<div class="kv"><span>Product / service cost</span><span>${naira(o.confirmed_product_cost)}</span></div>
+       <div class="kv"><span>Service fee</span><span>${naira(o.service_fee)}</span></div>
+       <div class="kv"><span>Delivery cost</span><span>${Number(o.delivery_cost) ? naira(o.delivery_cost) : 'None'}</span></div>
+       <div class="kv total"><span>Total to pay</span><span>${naira(o.total_amount)}</span></div>
+       <div class="kv"><span>Quote status</span><span>${esc(o.quote_status)}</span></div>`;
+    $('quoteBtns').hidden = o.quote_status !== 'Sent';
+  }
+
+  // delivery person
+  const dp = o.delivery_person;
+  $('dpCard').hidden = !dp;
+  if (dp) {
+    $('dpInfo').innerHTML = `<div class="kv"><span>Name</span><span>${esc(dp.full_name)}</span></div>
+      <div class="kv"><span>Phone</span><span><a href="tel:${esc(dp.phone_number)}">${esc(dp.phone_number)}</a></span></div>`;
+    $('dpWa').href = 'https://wa.me/' + waNum(dp.whatsapp_number || dp.phone_number) +
+      '?text=' + encodeURIComponent('Hello, this is about my order ' + o.order_reference);
+  }
+
+  $('tl').innerHTML = (o.timeline || []).map(t => `<li><b>${esc(t.status)}</b><small>${when(t.at)}</small></li>`).join('');
+  $('reviewCard').hidden = !o.can_review;
+  if (o.has_reviewed) { $('reviewCard').hidden = false; $('reviewCard').innerHTML = '<h2>Thank you!</h2><p>Your review has been received.</p>'; }
+  $('result').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function respond(decision) {
+  const btns = [$('approveBtn'), $('declineBtn')]; btns.forEach(b => b.disabled = true);
+  const { error } = await sb.rpc('respond_to_quote', { p_reference: REF, p_phone: PHONE, p_decision: decision });
+  btns.forEach(b => b.disabled = false);
+  if (error) return msg($('quoteMsg'), error.message);
+  await track(false);
+  msg($('quoteMsg'), decision === 'approve' ? 'Quote approved. We will proceed with your order.' : 'Quote declined. The administrator will contact you.', decision === 'approve');
+}
+$('approveBtn').onclick = () => { if (confirm('Approve this price and total?')) respond('approve'); };
+$('declineBtn').onclick = () => { if (confirm('Decline this quotation?')) respond('decline'); };
+
+// star rating
+$('stars').innerHTML = [1,2,3,4,5].map(n => `<button type="button" data-n="${n}" aria-label="${n} star">★</button>`).join('');
+$('stars').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  rating = +b.dataset.n;
+  [...$('stars').children].forEach((x, i) => x.classList.toggle('on', i < rating));
+};
+$('revBtn').onclick = async () => {
+  if (!rating) return msg($('revMsg'), 'Tap a star to rate.');
+  $('revBtn').disabled = true;
+  const { error } = await sb.rpc('submit_review', { p_reference: REF, p_phone: PHONE, p_rating: rating, p_comment: $('revText').value });
+  $('revBtn').disabled = false;
+  if (error) return msg($('revMsg'), error.message);
+  $('reviewCard').innerHTML = '<h2>Thank you!</h2><p>Your review has been received and will appear after approval.</p>';
+};
+
+$('cmpBtn').onclick = async () => {
+  const t = $('cmpText').value.trim();
+  if (t.length < 5) return msg($('cmpMsg'), 'Please describe the problem.');
+  $('cmpBtn').disabled = true;
+  const { error } = await sb.rpc('submit_complaint', { p_reference: REF, p_phone: PHONE, p_description: t });
+  $('cmpBtn').disabled = false;
+  if (error) return msg($('cmpMsg'), error.message);
+  $('cmpText').value = '';
+  msg($('cmpMsg'), 'Complaint received. The administrator will contact you.', true);
+};
+
+})();
+route();
+</script>
+</body>
+</html>
