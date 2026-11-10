@@ -1,532 +1,294 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Admin | Campus Errand Service</title>
+<title>Admin</title>
 <style>
-:root{--navy:#0b1f4b;--navy2:#13307a;--gold:#f59e0b;--gold2:#d97706;--grey:#f3f4f6;--text:#1f2937;--muted:#6b7280;--red:#b91c1c;--green:#15803d;--radius:12px}
+:root{--navy:#0b1f4b;--gold:#f59e0b;--gold2:#d97706;--grey:#f3f4f6;--red:#b91c1c;--green:#15803d;--muted:#6b7280}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:var(--grey);line-height:1.5;font-size:15px}
-a{color:var(--navy2)}
-h1,h2,h3{color:var(--navy);line-height:1.25}
-h2{font-size:1.25rem;margin-bottom:12px}
-h3{font-size:1.02rem;margin:14px 0 8px}
-.wrap{max-width:1200px;margin:0 auto;padding:0 14px}
-header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20}
-.top{display:flex;justify-content:space-between;align-items:center;height:56px;gap:10px}
-.top b{font-size:1.05rem}
-.top button{background:transparent;border:1.5px solid #fff;color:#fff;border-radius:999px;padding:6px 14px;cursor:pointer;font:inherit}
-.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
-.tabs button{flex:0 0 auto;background:rgba(255,255,255,.1);color:#fff;border:0;border-radius:999px;padding:8px 14px;cursor:pointer;font:inherit;font-weight:600}
-.tabs button.on{background:var(--gold);color:var(--navy)}
-main{padding:18px 0 60px}
-.card{background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(11,31,75,.07)}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-.stat{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px rgba(11,31,75,.07);cursor:pointer}
-.stat b{display:block;font-size:1.6rem;color:var(--navy)}
-.stat span{color:var(--muted);font-size:.85rem}
-.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
-.bar input,.bar select{flex:1 1 160px}
-input,select,textarea{width:100%;font:inherit;padding:10px;border:1.5px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--text)}
-input:focus,select:focus,textarea:focus{outline:3px solid rgba(245,158,11,.4);border-color:var(--gold2)}
-textarea{min-height:80px;resize:vertical}
-input[type=checkbox]{width:auto}
-label{display:block;font-weight:600;font-size:.88rem;margin-bottom:3px}
-.f{margin-bottom:10px}
-.two{display:grid;gap:10px;grid-template-columns:1fr 1fr}
-.btn{border:0;cursor:pointer;font:inherit;font-weight:700;padding:10px 16px;border-radius:999px;background:var(--gold);color:var(--navy)}
-.btn:hover{background:var(--gold2);color:#fff}
-.btn.sec{background:var(--navy);color:#fff}
-.btn.red{background:#fee2e2;color:var(--red)}
-.btn.sm{padding:5px 12px;font-size:.85rem}
-.btn:disabled{opacity:.6;cursor:not-allowed}
-.tw{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:640px}
-th,td{text-align:left;padding:9px 8px;border-bottom:1px solid #eef0f3;vertical-align:top}
-th{color:var(--muted);font-weight:600;font-size:.8rem;text-transform:uppercase}
-tr.click{cursor:pointer}tr.click:hover{background:#fffbeb}
-.pill{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--navy);color:#fff;font-size:.78rem;font-weight:700;white-space:nowrap}
-.pill.g{background:var(--green)}.pill.r{background:var(--red)}.pill.y{background:var(--gold2)}.pill.m{background:#6b7280}
-.kv{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #eef0f3}
-.kv span:first-child{color:var(--muted)}.kv span:last-child{text-align:right;font-weight:600;word-break:break-word}
-.muted{color:var(--muted);font-size:.85rem}
-.empty{text-align:center;color:var(--muted);padding:16px}
-.tl{list-style:none;border-left:3px solid var(--gold);margin-left:6px;padding-left:14px}
-.tl li{padding-bottom:8px}.tl small{display:block;color:var(--muted)}
-.thumb{height:70px;width:70px;object-fit:cover;border-radius:8px;background:var(--grey)}
-.acts{display:flex;gap:6px;flex-wrap:wrap}
-dialog{max-width:760px;width:94vw;border:0;border-radius:14px;padding:0;max-height:92vh}
-dialog::backdrop{background:rgba(0,0,0,.5)}
-.dh{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--navy);color:#fff;position:sticky;top:0;z-index:2}
-.dh h2{color:#fff;margin:0;font-size:1.1rem}
-.dh button{background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer;line-height:1}
-.db{padding:16px 18px 22px}
-#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:10px;z-index:100;display:none;max-width:92vw;font-weight:600}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--grey);color:#1f2937;line-height:1.45}
+header{background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;position:sticky;top:0;z-index:5}
+#tabs{display:flex;gap:6px;overflow-x:auto;background:#fff;padding:8px;position:sticky;top:48px;z-index:4;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+#tabs button{flex:none;border:0;background:var(--grey);padding:8px 12px;border-radius:99px;font:inherit;font-weight:600;cursor:pointer}
+#tabs button.on{background:var(--navy);color:#fff}
+main{max-width:760px;margin:0 auto;padding:12px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 1px 6px rgba(11,31,75,.08)}
+.tap{cursor:pointer}
+h3{color:var(--navy);margin-bottom:8px;font-size:1.05rem}
+label{display:block;font-weight:600;font-size:.88rem;margin-bottom:8px}
+input,select,textarea{width:100%;font:inherit;padding:10px;border:1.5px solid #cbd5e1;border-radius:8px;margin-top:3px;background:#fff}
+textarea{min-height:80px}
+.chk{display:flex;gap:8px;align-items:center}.chk input{width:auto;margin:0}
+.b,.b2,.bg,.br{border:0;cursor:pointer;font:inherit;font-weight:700;padding:11px 16px;border-radius:99px;background:var(--gold);color:var(--navy);width:100%}
+.b2{background:var(--navy);color:#fff;width:auto;margin-bottom:10px}
+.bg{background:var(--green);color:#fff}.br{background:#fee2e2;color:var(--red)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pill{display:inline-block;background:var(--navy);color:#fff;border-radius:99px;padding:2px 10px;font-size:.78rem;font-weight:700;vertical-align:middle}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #eef0f3;font-size:.92rem}
+.kv span{color:var(--muted)}.kv b{text-align:right;word-break:break-word}
+small{color:var(--muted)}
+a{color:var(--navy);font-weight:600}
+#login{max-width:380px;margin:12vh auto;padding:0 14px}
+.msg{color:var(--red);font-weight:600;margin:8px 0}
+#toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 18px;border-radius:99px;font-weight:600;z-index:9;display:none;max-width:90vw}
 #toast.bad{background:var(--red)}
-#login{max-width:380px;margin:12vh auto 0;padding:0 14px}
-#login .card{padding:22px}
-#loginMsg{color:var(--red);font-weight:600;margin-bottom:10px;min-height:20px}
-@media(max-width:560px){.two{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div id="login" hidden>
+<div id="login">
   <div class="card">
-    <h2>Administrator login</h2>
-    <p class="muted" style="margin-bottom:12px">Campus Errand Service</p>
-    <div id="loginMsg" role="alert"></div>
-    <form id="loginForm">
-      <div class="f"><label for="lEmail">Email</label><input id="lEmail" type="email" autocomplete="username" required></div>
-      <div class="f"><label for="lPass">Password</label><input id="lPass" type="password" autocomplete="current-password" required></div>
-      <button class="btn" style="width:100%" id="lBtn" type="submit">Sign in</button>
+    <h3>Admin sign in</h3>
+    <form id="lf">
+      <label>Email<input id="em" type="email" autocomplete="username" required></label>
+      <label>Password<input id="pw" type="password" autocomplete="current-password" required></label>
+      <div class="msg" id="lm"></div>
+      <button class="b">Sign in</button>
     </form>
   </div>
 </div>
 
 <div id="app" hidden>
-  <header>
-    <div class="wrap">
-      <div class="top"><b>Admin Panel</b><div><span id="who" class="muted" style="color:#c7d2fe;margin-right:8px"></span><button id="outBtn">Sign out</button></div></div>
-      <div class="tabs" id="tabs"></div>
-    </div>
-  </header>
-  <main class="wrap" id="main"></main>
+  <header><b id="hn">Admin</b><button class="b2" style="margin:0;background:var(--gold);color:var(--navy)" onclick="out()">Sign out</button></header>
+  <nav id="tabs"></nav>
+  <main id="main"></main>
 </div>
-
-<dialog id="dlg"><div class="dh"><h2 id="dlgT"></h2><button onclick="closeDlg()" aria-label="Close">&times;</button></div><div class="db" id="dlgB"></div></dialog>
 <div id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="config.js"></script>
 <script>
-const $ = id => document.getElementById(id);
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const naira = n => n == null ? '—' : '₦' + Number(n).toLocaleString('en-NG', { maximumFractionDigits: 2 });
-const when = d => d ? new Date(d).toLocaleString('en-NG', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—';
-const day = d => d ? new Date(d).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
-const waNum = n => { let d = String(n || '').replace(/\D/g, ''); if (d.startsWith('0')) d = '234' + d.slice(1); return d; };
-const must = r => { if (r.error) throw new Error(r.error.message); return r.data; };
-const phoneRe = /^[0-9+ ()-]{7,20}$/;
-const cfg = window.APP_CONFIG || {};
-const sb = supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const cfg=window.APP_CONFIG||{};
+const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
+const N=n=>'₦'+Number(n||0).toLocaleString('en-NG');
+const D=d=>d?new Date(d).toLocaleString('en-NG',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'}):'';
+const wa=n=>{let d=String(n||'').replace(/\D/g,'');if(d.startsWith('0'))d='234'+d.slice(1);return d};
+const ST=['Pending','Reviewed','Awaiting Payment','Paid','Assigned','Processing','Ready for Delivery','Delivered','Completed','Cancelled','Disputed'];
+const opts=(a,s)=>a.map(x=>`<option${x===s?' selected':''}>${esc(x)}</option>`).join('');
+const fd=e=>{e.preventDefault();return Object.fromEntries(new FormData(e.target))};
+const num=v=>v===''||v==null?null:Number(v);
+const F=(n,l,v,t='text',x='')=>`<label>${l}<input name="${n}" type="${t}" value="${esc(v)}" ${x}></label>`;
+const NF=(n,l,v)=>F(n,l,v,'number','step="any" min="0"');
+const TA=(n,l,v)=>`<label>${l}<textarea name="${n}">${esc(v)}</textarea></label>`;
+const S=(n,l,a,v)=>`<label>${l}<select name="${n}">${opts(a,v)}</select></label>`;
+const kv=(k,v)=>`<div class="kv"><span>${k}</span><b>${esc(v??'-')}</b></div>`;
+const fail=e=>{$('main').innerHTML='<p class="msg">'+esc(e.message)+'</p>'};
 
-const STATUSES = ['Pending','Reviewed','Awaiting Payment','Paid','Assigned','Processing','Ready for Delivery','Delivered','Completed','Cancelled','Disputed'];
-const statusCls = s => ({ Completed:'g', Delivered:'g', Paid:'g', Cancelled:'r', Disputed:'r', Pending:'y', 'Awaiting Payment':'y' })[s] || '';
+let tt;
+function toast(m,bad){const t=$('toast');t.textContent=m;t.className=bad?'bad':'';t.style.display='block';clearTimeout(tt);tt=setTimeout(()=>t.style.display='none',3500)}
+async function run(p,ok){const r=await p;if(r.error){toast(r.error.message,1);return null}if(ok)toast(ok);return r.data||true}
 
-let toastT;
-function toast(m, bad) { const t = $('toast'); t.textContent = m; t.className = bad ? 'bad' : ''; t.style.display = 'block'; clearTimeout(toastT); toastT = setTimeout(() => t.style.display = 'none', 4000); }
-async function run(fn, btn) {
-  if (btn) btn.disabled = true;
-  try { return await fn(); } catch (e) { toast(e.message || String(e), true); }
-  finally { if (btn) btn.disabled = false; }
-}
-function openDlg(title, html) { $('dlgT').textContent = title; $('dlgB').innerHTML = html; if (!$('dlg').open) $('dlg').showModal(); }
-function closeDlg() { $('dlg').close(); }
-const inp = (id, label, val = '', type = 'text', extra = '') => `<div class="f"><label for="${id}">${label}</label><input id="${id}" type="${type}" value="${esc(val)}" ${extra}></div>`;
-const ta = (id, label, val = '', extra = '') => `<div class="f"><label for="${id}">${label}</label><textarea id="${id}" ${extra}>${esc(val)}</textarea></div>`;
-const sel = (id, label, opts, val) => `<div class="f"><label for="${id}">${label}</label><select id="${id}">${opts.map(o => { const [v, t] = Array.isArray(o) ? o : [o, o]; return `<option value="${esc(v)}" ${String(v) === String(val ?? '') ? 'selected' : ''}>${esc(t)}</option>`; }).join('')}</select></div>`;
-const mediaUrl = p => sb.storage.from('site-media').getPublicUrl(p).data.publicUrl;
-const ext = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/svg+xml': 'svg' };
-async function uploadMedia(file, folder) {
-  if (!file) return null;
-  if (!ext[file.type]) throw new Error('Use a JPG, PNG, WEBP or SVG image.');
-  if (file.size > 2 * 1024 * 1024) throw new Error('Image must be under 2MB.');
-  const path = `${folder}/${crypto.randomUUID()}.${ext[file.type]}`;
-  must(await sb.storage.from('site-media').upload(path, file, { contentType: file.type }));
-  return path;
-}
-
-// ---------------- AUTH ----------------
-function showLogin(m) { $('app').hidden = true; $('login').hidden = false; $('loginMsg').textContent = m || ''; }
-$('loginForm').addEventListener('submit', async e => {
-  e.preventDefault(); $('lBtn').disabled = true; $('loginMsg').textContent = '';
-  const { data, error } = await sb.auth.signInWithPassword({ email: $('lEmail').value.trim(), password: $('lPass').value });
-  $('lBtn').disabled = false;
-  if (error) return $('loginMsg').textContent = error.message;
-  await enter(data.user);
-});
-$('outBtn').onclick = async () => { await sb.auth.signOut(); showLogin(); };
-sb.auth.onAuthStateChange(ev => { if (ev === 'SIGNED_OUT') showLogin(); });
-
-async function enter(user) {
-  const { data: p } = await sb.from('profiles').select('role,is_active,full_name,email').eq('id', user.id).maybeSingle();
-  if (!p || p.role !== 'admin' || !p.is_active) { await sb.auth.signOut(); return showLogin('This account is not an active administrator.'); }
-  $('login').hidden = true; $('app').hidden = false;
-  $('who').textContent = p.full_name || p.email || '';
-  go('dashboard');
-}
-(async () => {
-  const { data: { session } } = await sb.auth.getSession();
-  if (session) enter(session.user); else showLogin();
-})();
-
-// ---------------- NAV ----------------
-const TABS = [['dashboard','Dashboard'],['orders','Orders'],['delivery','Delivery Team'],['finance','Commissions'],['reviews','Reviews'],['complaints','Complaints'],['content','Site Content'],['pricing','Pricing'],['activity','Activity Log']];
-$('tabs').innerHTML = TABS.map(([k, t]) => `<button data-k="${k}">${t}</button>`).join('');
-$('tabs').onclick = e => { const b = e.target.closest('button'); if (b) go(b.dataset.k); };
-const loaders = {};
-function go(k, arg) {
-  [...$('tabs').children].forEach(b => b.classList.toggle('on', b.dataset.k === k));
-  $('main').innerHTML = '<p class="empty">Loading…</p>';
-  run(() => loaders[k](arg));
+// ---------- auth ----------
+$('lf').onsubmit=async e=>{
+  e.preventDefault();$('lm').textContent='';
+  const {error}=await sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value});
+  if(error)return $('lm').textContent=error.message;
+  boot();
+};
+async function out(){await sb.auth.signOut();location.reload()}
+async function boot(){
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session)return;
+  const {data:p}=await sb.from('profiles').select('role,is_active').eq('id',session.user.id).maybeSingle();
+  if(!p||p.role!=='admin'||!p.is_active){await sb.auth.signOut();$('lm').textContent='This account is not an administrator.';return}
+  $('login').hidden=true;$('app').hidden=false;
+  const st=await sb.from('site_settings').select('business_name').eq('id',1).maybeSingle();
+  if(st.data)$('hn').textContent=st.data.business_name+' · Admin';
+  go('orders');
 }
 
-// ---------------- DASHBOARD ----------------
-loaders.dashboard = async () => {
-  const [os, rv, cp, cm] = await Promise.all([
-    sb.from('orders').select('status').limit(5000),
-    sb.from('reviews').select('id', { count: 'exact', head: true }).eq('status', 'Pending'),
-    sb.from('complaints').select('id', { count: 'exact', head: true }).in('status', ['Open', 'Investigating']),
-    sb.from('commission_transactions').select('outstanding_balance')
+// ---------- tabs ----------
+const TABS={orders:'Orders',people:'Delivery',pricing:'Pricing',commissions:'Commissions',reviews:'Reviews',complaints:'Complaints',services:'Services',settings:'Site',logs:'Logs'};
+$('tabs').innerHTML=Object.entries(TABS).map(([k,v])=>`<button data-t="${k}" onclick="go('${k}')">${v}</button>`).join('');
+let cur='orders';
+async function go(t){
+  cur=t||cur;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===cur));
+  $('main').innerHTML='<p>Loading…</p>';
+  await T[cur]();scrollTo(0,0);
+}
+const T={};
+
+// ---------- orders ----------
+let OF='';
+T.orders=async()=>{
+  let q=sb.from('orders').select('id,order_reference,customer_name,service_category,status,total_amount,created_at').order('created_at',{ascending:false}).limit(100);
+  if(OF)q=q.eq('status',OF);
+  const {data,error}=await q;if(error)return fail(error);
+  $('main').innerHTML=`<div class="card"><select onchange="OF=this.value;go('orders')"><option value="">All statuses</option>${opts(ST,OF)}</select></div>`+
+  (data.map(o=>`<div class="card tap" onclick="order('${o.id}')"><b>${esc(o.order_reference)}</b> <span class="pill">${esc(o.status)}</span><div>${esc(o.customer_name)} · ${esc(o.service_category)}</div><small>${D(o.created_at)}${o.total_amount!=null?' · '+N(o.total_amount):''}</small></div>`).join('')||'<p>No orders.</p>');
+};
+
+async function order(id){
+  $('main').innerHTML='<p>Loading…</p>';
+  const [o,p,d]=await Promise.all([
+    sb.from('orders').select('*').eq('id',id).single(),
+    sb.from('payments').select('*').eq('order_id',id).order('created_at',{ascending:false}).limit(1),
+    sb.from('delivery_personnel').select('id,full_name,availability_status').eq('is_active',true).order('full_name')
   ]);
-  const c = {}; must(os).forEach(o => c[o.status] = (c[o.status] || 0) + 1);
-  const sum = (...k) => k.reduce((a, s) => a + (c[s] || 0), 0);
-  const out = must(cm).reduce((a, r) => a + Number(r.outstanding_balance || 0), 0);
-  const card = (n, l, on) => `<div class="stat" onclick="${on}"><b>${n}</b><span>${l}</span></div>`;
-  $('main').innerHTML = `<h2>Dashboard</h2><div class="grid">
-    ${card(c.Pending || 0, 'New requests', "goOrders('Pending')")}
-    ${card(c['Awaiting Payment'] || 0, 'Awaiting payment', "goOrders('Awaiting Payment')")}
-    ${card(sum('Paid','Assigned','Processing','Ready for Delivery'), 'In progress', "goOrders('')")}
-    ${card(c.Delivered || 0, 'Delivered, not closed', "goOrders('Delivered')")}
-    ${card(c.Completed || 0, 'Completed', "goOrders('Completed')")}
-    ${card(sum('Cancelled','Disputed'), 'Cancelled / disputed', "goOrders('')")}
-    ${card(rv.count || 0, 'Reviews to moderate', "go('reviews')")}
-    ${card(cp.count || 0, 'Open complaints', "go('complaints')")}
-    ${card(naira(out), 'Commission outstanding', "go('finance')")}
-  </div>`;
-};
-let presetStatus = '';
-function goOrders(s) { presetStatus = s; go('orders'); }
+  if(o.error)return fail(o.error);
+  const x=o.data,pay=(p.data||[])[0],people=d.data||[];
+  const files=[...(x.attachment_path||[]),...(x.reference_image_path?[x.reference_image_path]:[])];
+  const locked=!!x.customer_approved_at;
+  const dpName=(people.find(z=>z.id===x.assigned_delivery_person)||{}).full_name;
+  $('main').innerHTML=`<button class="b2" onclick="go('orders')">← Orders</button>
+  <div class="card"><h3>${esc(x.order_reference)} <span class="pill">${esc(x.status)}</span></h3>
+    ${kv('Customer',x.customer_name)}${kv('Phone',x.phone_number)}${kv('WhatsApp',x.whatsapp_number)}
+    ${kv('Department / level',[x.department,x.level].filter(Boolean).join(' · ')||'-')}
+    ${kv('Service',x.service_category)}${kv('Request',x.request_description)}${kv('Quantity',x.quantity)}
+    ${kv('Method',x.fulfilment_method)}${kv('Faculty / building',x.faculty_or_building)}${kv('Landmark',x.landmark)}
+    ${kv('Collection point',x.collection_point)}${kv('Deliver to',x.delivery_location)}${kv('Placed',D(x.created_at))}
+    <div style="margin-top:10px"><b>Files:</b> <span id="fl">${files.length?'':'none'}</span></div>
+    <p style="margin-top:10px"><a href="https://wa.me/${wa(x.whatsapp_number)}" target="_blank" rel="noopener">WhatsApp customer</a> · <a href="tel:${esc(x.phone_number)}">Call</a></p>
+  </div>
 
-// ---------------- ORDERS ----------------
-loaders.orders = async () => {
-  $('main').innerHTML = `<h2>Orders</h2>
-    <div class="bar"><input id="oQ" placeholder="Search reference, name or phone">
-    <select id="oS"><option value="">All statuses</option>${STATUSES.map(s => `<option ${s === presetStatus ? 'selected' : ''}>${s}</option>`).join('')}</select>
-    <button class="btn sec" id="oGo">Search</button></div><div class="card tw" id="oList"></div>`;
-  presetStatus = '';
-  $('oGo').onclick = () => run(listOrders);
-  $('oQ').onkeydown = e => { if (e.key === 'Enter') run(listOrders); };
-  $('oS').onchange = () => run(listOrders);
-  await listOrders();
-};
-async function listOrders() {
-  let q = sb.from('orders').select('id,order_reference,customer_name,phone_number,service_category,status,quote_status,total_amount,created_at,assigned_delivery_person').order('created_at', { ascending: false }).limit(200);
-  const st = $('oS').value, s = $('oQ').value.trim().replace(/[,()%*]/g, '');
-  if (st) q = q.eq('status', st);
-  if (s) q = q.or(`order_reference.ilike.%${s}%,customer_name.ilike.%${s}%,phone_number.ilike.%${s}%`);
-  const rows = must(await q);
-  $('oList').innerHTML = rows.length ? `<table><thead><tr><th>Reference</th><th>Student</th><th>Service</th><th>Status</th><th>Total</th><th>Placed</th></tr></thead><tbody>` +
-    rows.map(o => `<tr class="click" onclick="openOrder('${o.id}')"><td><b>${esc(o.order_reference)}</b></td><td>${esc(o.customer_name)}<br><span class="muted">${esc(o.phone_number)}</span></td><td>${esc(o.service_category)}</td>
-    <td><span class="pill ${statusCls(o.status)}">${esc(o.status)}</span>${o.quote_status !== 'None' ? `<br><span class="muted">Quote: ${esc(o.quote_status)}</span>` : ''}</td><td>${naira(o.total_amount)}</td><td>${when(o.created_at)}</td></tr>`).join('') + '</tbody></table>'
-    : '<p class="empty">No orders found.</p>';
-}
+  <form class="card" onsubmit="saveOrder(event,'${id}')"><h3>Status and notes</h3>
+    ${S('status','Status',ST,x.status)}${F('cancelled_reason','Cancel reason (if cancelled)',x.cancelled_reason)}${TA('admin_notes','Admin notes',x.admin_notes)}
+    <button class="b">Save</button></form>
 
-async function openOrder(id) {
-  await run(async () => {
-    const [o, h, p, dps] = await Promise.all([
-      sb.from('orders').select('*').eq('id', id).single(),
-      sb.from('order_status_history').select('*').eq('order_id', id).order('created_at'),
-      sb.from('payments').select('*').eq('order_id', id).order('created_at', { ascending: false }),
-      sb.from('delivery_personnel').select('id,full_name,availability_status').eq('is_active', true).order('full_name')
-    ]);
-    const ord = must(o), hist = must(h), pays = must(p), team = must(dps);
-    const pay = pays[0] || null;
-    const files = [...(ord.attachment_path || []), ...(ord.reference_image_path ? [ord.reference_image_path] : [])];
-    let links = [];
-    if (files.length) {
-      const r = await sb.storage.from('order-uploads').createSignedUrls(files, 3600);
-      links = (r.data || []).map(x => x.signedUrl ? `<a href="${esc(x.signedUrl)}" target="_blank" rel="noopener">${esc(x.path.split('/')[1] || 'file')}</a>` : '').filter(Boolean);
-    }
-    const locked = !!ord.customer_approved_at || ['Cancelled', 'Completed'].includes(ord.status);
-    const kv = (k, v) => `<div class="kv"><span>${k}</span><span>${v}</span></div>`;
-    const dpName = (team.find(d => d.id === ord.assigned_delivery_person) || {}).full_name;
+  <form class="card" onsubmit="quote(event,'${id}')"><h3>Quotation</h3>
+    ${x.confirmed_product_cost!=null?kv('Product cost',N(x.confirmed_product_cost))+kv('Service fee',N(x.service_fee))+kv('Delivery',N(x.delivery_cost))+kv('Total',N(x.total_amount))+kv('Quote status',x.quote_status)+kv('Your earning',N(x.admin_earning))+kv('Delivery earning',N(x.delivery_earning)):'<small>No quote yet.</small>'}
+    ${locked?'<p class="msg">Student approved this quote. Price is locked.</p>':`<div style="margin-top:10px">${NF('pc','Product / service cost (₦)',x.confirmed_product_cost)}${NF('dc','Delivery cost (₦)',x.delivery_cost)}<button class="b">Confirm and send quote</button></div>`}
+  </form>
 
-    openDlg(ord.order_reference, `
-      <div style="margin-bottom:8px"><span class="pill ${statusCls(ord.status)}">${esc(ord.status)}</span> <span class="muted">Placed ${when(ord.created_at)}</span></div>
-      ${kv('Student', esc(ord.customer_name))}
-      ${kv('Phone', `<a href="tel:${esc(ord.phone_number)}">${esc(ord.phone_number)}</a>`)}
-      ${kv('WhatsApp', `<a target="_blank" rel="noopener" href="https://wa.me/${waNum(ord.whatsapp_number)}?text=${encodeURIComponent('Hello, this is about your order ' + ord.order_reference)}">${esc(ord.whatsapp_number)}</a>`)}
-      ${kv('Department / Level', esc([ord.department, ord.level].filter(Boolean).join(' / ') || '—'))}
-      ${kv('Service', esc(ord.service_category))}
-      ${kv('Quantity', ord.quantity)}
-      ${kv('Fulfilment', esc(ord.fulfilment_method))}
-      ${kv('Faculty / Building', esc(ord.faculty_or_building))}
-      ${kv('Landmark', esc(ord.landmark || '—'))}
-      ${kv('Collection point', esc(ord.collection_point || '—'))}
-      ${kv('Delivery location', esc(ord.delivery_location))}
-      <h3>Request</h3><p style="white-space:pre-wrap">${esc(ord.request_description)}</p>
-      <h3>Uploaded files</h3><div>${links.length ? links.join(' &middot; ') : '<span class="muted">None</span>'}</div>
+  <form class="card" onsubmit="assign(event,'${id}')"><h3>Delivery person</h3>
+    ${kv('Assigned',dpName||'Nobody yet')}
+    <label>Assign to<select name="dp"><option value="">Choose…</option>${people.map(z=>`<option value="${z.id}">${esc(z.full_name)} (${esc(z.availability_status)})</option>`).join('')}</select></label>
+    <button class="b">Assign</button></form>
 
-      <h3>Quotation</h3>
-      ${kv('Quote status', esc(ord.quote_status) + (ord.customer_approved_at ? ' (approved ' + when(ord.customer_approved_at) + ')' : ''))}
-      ${ord.confirmed_product_cost != null ? kv('Product cost', naira(ord.confirmed_product_cost)) + kv('Service fee', naira(ord.service_fee)) + kv('Delivery cost', naira(ord.delivery_cost)) + kv('Total', naira(ord.total_amount)) + kv('Admin share / Delivery share', naira(ord.admin_earning) + ' / ' + naira(ord.delivery_earning)) : ''}
-      ${locked ? '<p class="muted" style="margin-top:6px">Quote is locked.</p>' : `
-        <div class="two" style="margin-top:8px">${inp('qCost', 'Confirmed product cost (₦)', ord.confirmed_product_cost ?? '', 'number', 'min="0" step="0.01"')}${inp('qDel', 'Delivery cost (₦)', ord.delivery_cost ?? 0, 'number', 'min="0" step="0.01"')}</div>
-        <button class="btn" id="qBtn">Confirm and send quote</button>`}
-
-      <h3>Delivery person</h3>
-      <p class="muted" style="margin-bottom:6px">Current: ${esc(dpName || 'Not assigned')}</p>
-      <div class="two">${sel('aDp', '', [['', 'Select…'], ...team.map(d => [d.id, d.full_name + ' (' + d.availability_status + ')'])], ord.assigned_delivery_person)}<div><button class="btn sec" id="aBtn">Assign</button></div></div>
-
-      <h3>Status and notes</h3>
-      ${sel('sStatus', 'Status', STATUSES, ord.status)}
-      ${inp('sReason', 'Cancellation reason (if cancelling)', ord.cancelled_reason || '')}
-      ${ta('sNotes', 'Admin notes (private)', ord.admin_notes || '')}
-      <button class="btn" id="sBtn">Save status and notes</button>
-
-      <h3>Payment</h3>
-      ${ord.total_amount == null ? '<p class="muted">Confirm a quote first to record payment.</p>' : `
-        <p class="muted" style="margin-bottom:6px">Expected: ${naira(ord.total_amount)}</p>
-        ${sel('pStatus', 'Payment status', ['Awaiting Payment', 'Paid', 'Partially Paid', 'Refunded', 'Disputed'], pay ? pay.payment_status : 'Awaiting Payment')}
-        <div class="two">${inp('pRecv', 'Amount received (₦)', pay ? pay.amount_received : 0, 'number', 'min="0" step="0.01"')}${inp('pRefund', 'Refund amount (₦)', pay ? pay.refund_amount : 0, 'number', 'min="0" step="0.01"')}</div>
-        <div class="two">${inp('pRef', 'Payment reference', pay?.payment_reference || '')}${inp('pDate', 'Payment date', pay?.payment_date || '', 'date')}</div>
-        ${ta('pNotes', 'Payment notes', pay?.notes || '')}
-        ${pay && pay.confirmed_at ? `<p class="muted" style="margin-bottom:6px">Confirmed ${when(pay.confirmed_at)}</p>` : ''}
-        <button class="btn" id="pBtn">Save payment</button>`}
-
-      <h3>Timeline</h3>
-      <ul class="tl">${hist.map(x => `<li><b>${esc(x.to_status)}</b><small>${when(x.created_at)}${x.note ? ' · ' + esc(x.note) : ''}</small></li>`).join('') || '<li class="muted">No history.</li>'}</ul>
-    `);
-
-    const reopen = () => openOrder(id);
-    if ($('qBtn')) $('qBtn').onclick = e => run(async () => {
-      const cost = parseFloat($('qCost').value), del = parseFloat($('qDel').value || '0');
-      if (!(cost >= 0)) throw new Error('Enter the confirmed product cost.');
-      if (!(del >= 0)) throw new Error('Delivery cost cannot be negative.');
-      must(await sb.rpc('confirm_order_quote', { p_order_id: id, p_product_cost: cost, p_delivery_cost: del }));
-      toast('Quote sent to the student.'); reopen();
-    }, e.target);
-    $('aBtn').onclick = e => run(async () => {
-      if (!$('aDp').value) throw new Error('Choose a delivery person.');
-      must(await sb.rpc('assign_delivery_person', { p_order_id: id, p_dp_id: $('aDp').value }));
-      toast('Delivery person assigned.'); reopen();
-    }, e.target);
-    $('sBtn').onclick = e => run(async () => {
-      const st = $('sStatus').value;
-      if (st === 'Cancelled' && !$('sReason').value.trim() && !confirm('Cancel without a reason?')) return;
-      const rows = must(await sb.from('orders').update({ status: st, admin_notes: $('sNotes').value.trim() || null, cancelled_reason: $('sReason').value.trim() || null }).eq('id', id).select('id'));
-      if (!rows.length) throw new Error('Not saved.');
-      toast('Saved.'); reopen();
-    }, e.target);
-    if ($('pBtn')) $('pBtn').onclick = e => run(async () => {
-      const st = $('pStatus').value;
-      let recv = parseFloat($('pRecv').value || '0');
-      if (st === 'Paid' && recv === 0) recv = Number(ord.total_amount);
-      if (st === 'Paid' && recv < Number(ord.total_amount) && !confirm('Amount received is less than the total. Mark as Paid anyway?')) return;
-      const row = { amount_received: recv, payment_status: st, payment_reference: $('pRef').value.trim() || null, payment_date: $('pDate').value || null, refund_amount: parseFloat($('pRefund').value || '0'), notes: $('pNotes').value.trim() || null };
-      if (pay) must(await sb.from('payments').update(row).eq('id', pay.id).select('id'));
-      else must(await sb.from('payments').insert({ ...row, order_id: id, amount_expected: ord.total_amount }).select('id'));
-      if (st === 'Paid' && ['Pending', 'Reviewed', 'Awaiting Payment'].includes(ord.status))
-        must(await sb.from('orders').update({ status: 'Paid' }).eq('id', id).select('id'));
-      toast('Payment saved.'); reopen();
-    }, e.target);
+  ${x.total_amount!=null?`<form class="card" onsubmit="pay(event,'${id}',${x.total_amount},'${pay?pay.id:''}')"><h3>Payment</h3>
+    ${kv('Expected',N(pay?pay.amount_expected:x.total_amount))}
+    ${NF('ar','Amount received (₦)',pay?pay.amount_received:'')}
+    ${S('ps','Payment status',['Awaiting Payment','Paid','Partially Paid','Refunded','Disputed'],pay?pay.payment_status:'Awaiting Payment')}
+    ${F('pr','Payment reference',pay?pay.payment_reference:'')}
+    <button class="b">Save payment</button></form>`:''}`;
+  files.forEach(async(f,i)=>{
+    const {data}=await sb.storage.from('order-uploads').createSignedUrl(f,600);
+    if(data)$('fl').insertAdjacentHTML('beforeend',`<a href="${esc(data.signedUrl)}" target="_blank" rel="noopener">File ${i+1}</a> `);
   });
 }
-
-// ---------------- DELIVERY TEAM ----------------
-let TEAM = [];
-loaders.delivery = async () => {
-  const [d, s] = await Promise.all([sb.from('delivery_personnel').select('*').order('full_name'), sb.from('delivery_personnel_stats').select('*')]);
-  TEAM = must(d); const st = {}; must(s).forEach(x => st[x.id] = x);
-  $('main').innerHTML = `<h2>Delivery Team</h2><div class="bar"><button class="btn" onclick="editDP(null)">+ Add delivery person</button></div>
-    <div class="card tw">${TEAM.length ? `<table><thead><tr><th>Name</th><th>Phone</th><th>Availability</th><th>Assigned</th><th>Completed</th><th>Earnings</th><th></th></tr></thead><tbody>` +
-    TEAM.map(p => { const x = st[p.id] || {}; return `<tr><td><b>${esc(p.full_name)}</b>${p.is_active ? '' : ' <span class="pill m">Inactive</span>'}</td><td>${esc(p.phone_number)}</td><td>${esc(p.availability_status)}</td><td>${x.total_assigned || 0}</td><td>${x.completed_orders || 0}</td><td>${naira(x.total_earnings)}</td><td><button class="btn sm sec" onclick="editDP('${p.id}')">Edit</button></td></tr>`; }).join('') + '</tbody></table>' : '<p class="empty">No delivery personnel yet.</p>'}</div>`;
-};
-function editDP(id) {
-  const p = TEAM.find(x => x.id === id) || {};
-  openDlg(id ? 'Edit delivery person' : 'Add delivery person', `
-    ${inp('dName', 'Full name', p.full_name || '', 'text', 'maxlength="100"')}
-    <div class="two">${inp('dPhone', 'Phone number', p.phone_number || '', 'tel')}${inp('dWa', 'WhatsApp number', p.whatsapp_number || '', 'tel')}</div>
-    ${sel('dAv', 'Availability', ['Available', 'Busy', 'Offline'], p.availability_status || 'Available')}
-    <div class="f"><label><input type="checkbox" id="dAct" ${p.is_active === false ? '' : 'checked'}> Active</label></div>
-    <button class="btn" id="dSave">Save</button>`);
-  $('dSave').onclick = e => run(async () => {
-    const row = { full_name: $('dName').value.trim(), phone_number: $('dPhone').value.trim(), whatsapp_number: $('dWa').value.trim() || null, availability_status: $('dAv').value, is_active: $('dAct').checked };
-    if (row.full_name.length < 2) throw new Error('Enter the name.');
-    if (!phoneRe.test(row.phone_number)) throw new Error('Enter a valid phone number.');
-    if (row.whatsapp_number && !phoneRe.test(row.whatsapp_number)) throw new Error('Enter a valid WhatsApp number.');
-    if (id) must(await sb.from('delivery_personnel').update(row).eq('id', id).select('id'));
-    else must(await sb.from('delivery_personnel').insert(row).select('id'));
-    closeDlg(); toast('Saved.'); go('delivery');
-  }, e.target);
+async function saveOrder(e,id){const f=fd(e);if(await run(sb.from('orders').update({status:f.status,admin_notes:f.admin_notes||null,cancelled_reason:f.cancelled_reason||null}).eq('id',id),'Saved'))order(id)}
+async function quote(e,id){const f=fd(e);if(f.pc==null||f.pc==='')return toast('Enter the product cost',1);if(await run(sb.rpc('confirm_order_quote',{p_order_id:id,p_product_cost:num(f.pc),p_delivery_cost:num(f.dc)||0}),'Quote sent to student'))order(id)}
+async function assign(e,id){const f=fd(e);if(!f.dp)return toast('Choose a delivery person',1);if(await run(sb.rpc('assign_delivery_person',{p_order_id:id,p_dp_id:f.dp}),'Assigned'))order(id)}
+async function pay(e,id,exp,pid){
+  const f=fd(e);
+  const row={amount_received:num(f.ar)||0,payment_status:f.ps,payment_reference:f.pr||null,payment_date:new Date().toISOString().slice(0,10)};
+  const q=pid?sb.from('payments').update(row).eq('id',pid):sb.from('payments').insert({...row,order_id:id,amount_expected:exp});
+  if(await run(q,'Payment saved'))order(id);
 }
 
-// ---------------- COMMISSIONS ----------------
-let COMM = [];
-loaders.finance = async () => {
-  COMM = must(await sb.from('commission_transactions').select('*, orders(order_reference,customer_name), delivery_personnel(full_name)').order('created_at', { ascending: false }).limit(300));
-  const t = COMM.reduce((a, r) => ({ fee: a.fee + Number(r.service_fee), adm: a.adm + Number(r.admin_amount), rem: a.rem + Number(r.amount_remitted), out: a.out + Number(r.outstanding_balance) }), { fee: 0, adm: 0, rem: 0, out: 0 });
-  $('main').innerHTML = `<h2>Commissions</h2>
-    <div class="grid" style="margin-bottom:14px">
-      <div class="stat"><b>${naira(t.fee)}</b><span>Service fees</span></div><div class="stat"><b>${naira(t.adm)}</b><span>Owed to administrator</span></div>
-      <div class="stat"><b>${naira(t.rem)}</b><span>Remitted</span></div><div class="stat"><b>${naira(t.out)}</b><span>Outstanding</span></div></div>
-    <div class="card tw">${COMM.length ? `<table><thead><tr><th>Order</th><th>Delivery person</th><th>Fee</th><th>Admin share</th><th>Remitted</th><th>Outstanding</th><th>Status</th><th></th></tr></thead><tbody>` +
-    COMM.map(r => `<tr><td>${esc(r.orders?.order_reference || '—')}</td><td>${esc(r.delivery_personnel?.full_name || '—')}</td><td>${naira(r.service_fee)}</td><td>${naira(r.admin_amount)}</td><td>${naira(r.amount_remitted)}</td><td>${naira(r.outstanding_balance)}</td>
-    <td><span class="pill ${r.remittance_status === 'Remitted' ? 'g' : r.remittance_status === 'Outstanding' ? 'y' : ''}">${esc(r.remittance_status)}</span></td>
-    <td>${r.remittance_status === 'Remitted' ? '' : `<button class="btn sm" onclick="remit('${r.id}')">Record</button>`}</td></tr>`).join('') + '</tbody></table>' : '<p class="empty">Records appear here when orders are marked Completed.</p>'}</div>`;
+// ---------- delivery people ----------
+const pf=p=>`<form class="card" onsubmit="savePerson(event,'${p?p.id:''}')">${p?`<h3>${esc(p.full_name)}</h3><small>Assigned ${p.total_assigned} · Completed ${p.completed_orders} · Earned ${N(p.total_earnings)}</small>`:'<h3>Add delivery person</h3>'}
+  ${F('full_name','Full name',p?.full_name,'text','required')}${F('phone_number','Phone',p?.phone_number,'tel','required')}${F('whatsapp_number','WhatsApp (optional)',p?.whatsapp_number,'tel')}
+  ${S('availability_status','Availability',['Available','Busy','Offline'],p?.availability_status)}
+  <label class="chk"><input type="checkbox" name="is_active"${!p||p.is_active?' checked':''}> Active</label>
+  <button class="b">${p?'Save':'Add person'}</button></form>`;
+T.people=async()=>{
+  const [a,b]=await Promise.all([sb.from('delivery_personnel').select('*').order('full_name'),sb.from('delivery_personnel_stats').select('*')]);
+  if(a.error)return fail(a.error);
+  const st=Object.fromEntries((b.data||[]).map(s=>[s.id,s]));
+  $('main').innerHTML=pf(null)+a.data.map(p=>pf({...p,total_assigned:0,completed_orders:0,total_earnings:0,...st[p.id],...p})).join('');
 };
-function remit(id) {
-  const r = COMM.find(x => x.id === id);
-  openDlg('Record remittance', `<p class="muted" style="margin-bottom:8px">${esc(r.orders?.order_reference || '')} · Outstanding ${naira(r.outstanding_balance)}</p>
-    ${inp('rAmt', 'Amount received now (₦)', r.outstanding_balance, 'number', 'min="0" step="0.01"')}${inp('rRef', 'Reference', r.remittance_reference || '')}
-    <button class="btn" id="rSave">Save</button>`);
-  $('rSave').onclick = e => run(async () => {
-    const add = parseFloat($('rAmt').value);
-    if (!(add > 0)) throw new Error('Enter an amount above zero.');
-    const total = Number(r.amount_remitted) + add;
-    if (total > Number(r.admin_amount)) throw new Error('That is more than the amount owed.');
-    must(await sb.from('commission_transactions').update({ amount_remitted: total, remittance_reference: $('rRef').value.trim() || null }).eq('id', id).select('id'));
-    closeDlg(); toast('Remittance recorded.'); go('finance');
-  }, e.target);
+async function savePerson(e,id){
+  const f=fd(e);
+  const row={full_name:f.full_name,phone_number:f.phone_number,whatsapp_number:f.whatsapp_number||null,availability_status:f.availability_status,is_active:!!f.is_active};
+  if(await run(id?sb.from('delivery_personnel').update(row).eq('id',id):sb.from('delivery_personnel').insert(row),'Saved'))go();
 }
 
-// ---------------- REVIEWS ----------------
-loaders.reviews = async () => {
-  $('main').innerHTML = `<h2>Reviews</h2><div class="bar"><select id="rvS"><option>Pending</option><option>Approved</option><option>Rejected</option><option value="">All</option></select></div><div class="card tw" id="rvList"></div>`;
-  $('rvS').onchange = () => run(listReviews); await listReviews();
+// ---------- pricing ----------
+T.pricing=async()=>{
+  const {data:s,error}=await sb.from('commission_settings').select('*').eq('is_active',true).maybeSingle();
+  if(error)return fail(error);
+  $('main').innerHTML=`<form class="card" onsubmit="savePricing(event)"><h3>Pricing and commission</h3>
+    ${s&&s.admin_share_percent==null?'<p class="msg">Set the sharing percentages. Quotes cannot be sent until you do.</p>':''}
+    ${NF('p','Service fee (% of product cost)',s?.commission_percent)}${NF('m','Minimum service fee (₦)',s?.minimum_fee)}
+    ${NF('a','Your share of the fee (%)',s?.admin_share_percent)}${NF('d','Delivery person share (%)',s?.delivery_share_percent)}
+    <small>The two shares must add up to 100. Changes apply only to new quotes.</small>
+    <button class="b" style="margin-top:10px">Save settings</button></form>`;
 };
-async function listReviews() {
-  let q = sb.from('reviews').select('*').order('created_at', { ascending: false }).limit(200);
-  if ($('rvS').value) q = q.eq('status', $('rvS').value);
-  const rows = must(await q);
-  $('rvList').innerHTML = rows.length ? `<table><thead><tr><th>Student</th><th>Rating</th><th>Comment</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody>` +
-    rows.map(r => `<tr><td>${esc(r.customer_name)}</td><td>${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</td><td style="max-width:320px">${esc(r.comment || '')}</td><td><span class="pill ${r.status === 'Approved' ? 'g' : r.status === 'Rejected' ? 'r' : 'y'}">${r.status}</span></td><td>${day(r.created_at)}</td>
-    <td><div class="acts">${['Approved', 'Rejected', 'Pending'].filter(s => s !== r.status).map(s => `<button class="btn sm ${s === 'Rejected' ? 'red' : s === 'Approved' ? '' : 'sec'}" onclick="setReview('${r.id}','${s}')">${s === 'Approved' ? 'Approve' : s === 'Rejected' ? 'Reject' : 'Unpublish'}</button>`).join('')}</div></td></tr>`).join('') + '</tbody></table>' : '<p class="empty">Nothing here.</p>';
-}
-async function setReview(id, status) {
-  await run(async () => { must(await sb.from('reviews').update({ status }).eq('id', id).select('id')); toast('Updated.'); await listReviews(); });
-}
+async function savePricing(e){const f=fd(e);if(await run(sb.rpc('save_commission_settings',{p_percent:num(f.p),p_min_fee:num(f.m),p_admin_share:num(f.a),p_delivery_share:num(f.d)}),'Saved'))go()}
 
-// ---------------- COMPLAINTS ----------------
-let CMP = [];
-loaders.complaints = async () => {
-  $('main').innerHTML = `<h2>Complaints</h2><div class="bar"><select id="cS"><option value="">All</option><option>Open</option><option>Investigating</option><option>Resolved</option><option>Rejected</option></select></div><div class="card tw" id="cList"></div>`;
-  $('cS').onchange = () => run(listComplaints); await listComplaints();
+// ---------- commissions ----------
+T.commissions=async()=>{
+  const {data,error}=await sb.from('commission_transactions').select('*,orders(order_reference),delivery_personnel(full_name)').order('created_at',{ascending:false}).limit(100);
+  if(error)return fail(error);
+  const owed=data.reduce((t,c)=>t+Number(c.outstanding_balance),0);
+  $('main').innerHTML=`<div class="card"><h3>Outstanding to you: ${N(owed)}</h3></div>`+
+  (data.map(c=>`<form class="card" onsubmit="remit(event,'${c.id}')"><b>${esc(c.orders?.order_reference)}</b> <span class="pill">${esc(c.remittance_status)}</span>
+    ${kv('Delivery person',c.delivery_personnel?.full_name)}${kv('Service fee',N(c.service_fee))}${kv('Owed to you',N(c.admin_amount))}${kv('Outstanding',N(c.outstanding_balance))}
+    <div style="margin-top:8px">${NF('amt','Total remitted so far (₦)',c.amount_remitted)}${F('ref','Reference',c.remittance_reference)}</div>
+    <button class="b">Record remittance</button></form>`).join('')||'<p>No commissions yet. They appear when orders are marked Completed.</p>');
 };
-async function listComplaints() {
-  let q = sb.from('complaints').select('*, orders(order_reference)').order('created_at', { ascending: false }).limit(200);
-  if ($('cS').value) q = q.eq('status', $('cS').value);
-  CMP = must(await q);
-  $('cList').innerHTML = CMP.length ? `<table><thead><tr><th>Order</th><th>Student</th><th>Complaint</th><th>Status</th><th>Date</th></tr></thead><tbody>` +
-    CMP.map(c => `<tr class="click" onclick="editComplaint('${c.id}')"><td>${esc(c.orders?.order_reference || '')}</td><td>${esc(c.customer_name)}</td><td style="max-width:320px">${esc(c.description.slice(0, 120))}${c.description.length > 120 ? '…' : ''}</td><td><span class="pill ${c.status === 'Resolved' ? 'g' : c.status === 'Rejected' ? 'm' : 'y'}">${c.status}</span></td><td>${day(c.created_at)}</td></tr>`).join('') + '</tbody></table>' : '<p class="empty">No complaints.</p>';
-}
-function editComplaint(id) {
-  const c = CMP.find(x => x.id === id);
-  openDlg('Complaint · ' + (c.orders?.order_reference || ''), `
-    <div class="kv"><span>Student</span><span>${esc(c.customer_name)}</span></div>
-    <div class="kv"><span>Contact</span><span>${c.contact ? `<a target="_blank" rel="noopener" href="https://wa.me/${waNum(c.contact)}">${esc(c.contact)}</a>` : '—'}</span></div>
-    <h3>Description</h3><p style="white-space:pre-wrap;margin-bottom:10px">${esc(c.description)}</p>
-    ${sel('cStatus', 'Status', ['Open', 'Investigating', 'Resolved', 'Rejected'], c.status)}
-    ${ta('cInv', 'Investigation notes', c.investigation_notes || '')}${ta('cRes', 'Resolution notes', c.resolution_notes || '')}
-    ${inp('cRef', 'Refund amount (₦)', c.refund_amount, 'number', 'min="0" step="0.01"')}
-    <button class="btn" id="cSave">Save</button>`);
-  $('cSave').onclick = e => run(async () => {
-    must(await sb.from('complaints').update({ status: $('cStatus').value, investigation_notes: $('cInv').value.trim() || null, resolution_notes: $('cRes').value.trim() || null, refund_amount: parseFloat($('cRef').value || '0') }).eq('id', id).select('id'));
-    closeDlg(); toast('Saved.'); await listComplaints();
-  }, e.target);
-}
+async function remit(e,id){const f=fd(e);if(await run(sb.from('commission_transactions').update({amount_remitted:num(f.amt)||0,remittance_reference:f.ref||null}).eq('id',id),'Recorded'))go()}
 
-// ---------------- SITE CONTENT ----------------
-let SVC = [];
-loaders.content = async () => {
-  const [st, sv, gl, co, rv] = await Promise.all([
-    sb.from('site_settings').select('*').eq('id', 1).maybeSingle(),
-    sb.from('services').select('*').order('sort_order'),
-    sb.from('completed_order_gallery').select('*').order('created_at', { ascending: false }),
-    sb.from('orders').select('id,order_reference,customer_name').eq('status', 'Completed').order('created_at', { ascending: false }).limit(100),
-    sb.from('reviews').select('id,customer_name,rating,order_id').eq('status', 'Approved').order('created_at', { ascending: false }).limit(100)
-  ]);
-  const s = must(st) || {}; SVC = must(sv); const gal = must(gl), done = must(co), revs = must(rv);
-  $('main').innerHTML = `<h2>Site Content</h2>
-  <div class="card"><h3 style="margin-top:0">Website settings</h3>
-    ${inp('s_business_name', 'Business name', s.business_name || '')}${inp('s_announcement', 'Announcement banner (leave empty to hide)', s.announcement || '')}
-    ${inp('s_hero_headline', 'Hero headline', s.hero_headline || '')}${ta('s_hero_subtext', 'Hero text', s.hero_subtext || '')}
-    <div class="two">${inp('s_whatsapp_number', 'WhatsApp number', s.whatsapp_number || '', 'tel')}${inp('s_phone_number', 'Phone number', s.phone_number || '', 'tel')}</div>
-    <div class="two">${inp('s_contact_email', 'Contact email', s.contact_email || '', 'email')}${inp('s_contact_address', 'Address', s.contact_address || '')}</div>
-    ${ta('s_privacy_policy', 'Privacy policy', s.privacy_policy || '', 'style="min-height:140px"')}${ta('s_terms_conditions', 'Terms and conditions', s.terms_conditions || '', 'style="min-height:140px"')}
-    <div class="f"><label for="s_logo">Logo ${s.logo_path ? `<img class="thumb" style="display:inline-block;vertical-align:middle;margin-left:8px" src="${esc(mediaUrl(s.logo_path))}" alt="">` : ''}</label><input id="s_logo" type="file" accept="image/jpeg,image/png,image/webp,image/svg+xml"></div>
-    <button class="btn" id="sSave">Save settings</button></div>
-
-  <div class="card"><div class="bar" style="justify-content:space-between"><h3 style="margin:0">Services</h3><button class="btn sm" onclick="editSvc(null)">+ Add service</button></div>
-    <div class="tw"><table><thead><tr><th></th><th>Name</th><th>Order</th><th>Status</th><th></th></tr></thead><tbody>${SVC.map(v => `<tr><td>${v.image_path ? `<img class="thumb" style="height:40px;width:40px" src="${esc(mediaUrl(v.image_path))}" alt="">` : esc(v.icon || '')}</td><td>${esc(v.name)}<br><span class="muted">${esc(v.description || '')}</span></td><td>${v.sort_order}</td><td>${v.is_active ? '<span class="pill g">Active</span>' : '<span class="pill m">Hidden</span>'}</td><td><button class="btn sm sec" onclick="editSvc('${v.id}')">Edit</button></td></tr>`).join('')}</tbody></table></div></div>
-
-  <div class="card"><h3 style="margin-top:0">Completed orders gallery</h3>
-    ${inp('g_title', 'Title', '', 'text', 'maxlength="120"')}${ta('g_desc', 'Description (optional)')}
-    <div class="two">${inp('g_date', 'Completed date', '', 'date')}<div class="f"><label for="g_img">Image</label><input id="g_img" type="file" accept="image/jpeg,image/png,image/webp"></div></div>
-    <div class="two">${sel('g_order', 'Linked order (optional)', [['', 'None'], ...done.map(o => [o.id, o.order_reference + ' · ' + o.customer_name])], '')}${sel('g_review', 'Linked review (optional)', [['', 'None'], ...revs.map(r => [r.id, r.customer_name + ' · ' + r.rating + '★'])], '')}</div>
-    <div class="f"><label><input type="checkbox" id="g_app" checked> Publish immediately</label></div>
-    <button class="btn" id="gAdd">Add to gallery</button>
-    <div class="tw" style="margin-top:14px">${gal.length ? `<table><thead><tr><th></th><th>Title</th><th>Status</th><th></th></tr></thead><tbody>${gal.map(g => `<tr><td><img class="thumb" style="height:48px;width:48px" src="${esc(mediaUrl(g.image_path))}" alt=""></td><td>${esc(g.title)}</td><td>${g.is_approved ? '<span class="pill g">Published</span>' : '<span class="pill m">Hidden</span>'}</td><td><div class="acts"><button class="btn sm sec" onclick="toggleGal('${g.id}',${!g.is_approved})">${g.is_approved ? 'Unpublish' : 'Publish'}</button><button class="btn sm red" onclick="delGal('${g.id}')">Delete</button></div></td></tr>`).join('')}</tbody></table>` : '<p class="empty">No gallery items.</p>'}</div></div>`;
-
-  $('sSave').onclick = e => run(async () => {
-    const row = {};
-    ['announcement', 'contact_email', 'contact_address', 'privacy_policy', 'terms_conditions', 'phone_number'].forEach(k => row[k] = $('s_' + k).value.trim() || null);
-    ['business_name', 'hero_headline', 'hero_subtext'].forEach(k => { const v = $('s_' + k).value.trim(); if (v) row[k] = v; });
-    const wa = $('s_whatsapp_number').value.trim(); row.whatsapp_number = wa ? waNum(wa) : null;
-    const lp = await uploadMedia($('s_logo').files[0], 'branding'); if (lp) row.logo_path = lp;
-    must(await sb.from('site_settings').update(row).eq('id', 1).select('id'));
-    toast('Settings saved.'); go('content');
-  }, $('sSave'));
-  $('gAdd').onclick = e => run(async () => {
-    const title = $('g_title').value.trim(); const f = $('g_img').files[0];
-    if (title.length < 2) throw new Error('Enter a title.'); if (!f) throw new Error('Choose an image.');
-    const path = await uploadMedia(f, 'gallery');
-    must(await sb.from('completed_order_gallery').insert({ title, description: $('g_desc').value.trim() || null, image_path: path, completed_date: $('g_date').value || null, order_id: $('g_order').value || null, review_id: $('g_review').value || null, is_approved: $('g_app').checked }).select('id'));
-    toast('Added.'); go('content');
-  }, $('gAdd'));
+// ---------- reviews ----------
+T.reviews=async()=>{
+  const {data,error}=await sb.from('reviews').select('*').order('created_at',{ascending:false}).limit(100);
+  if(error)return fail(error);
+  $('main').innerHTML=data.map(r=>`<div class="card"><b>${esc(r.customer_name)}</b> <span class="pill">${esc(r.status)}</span><div>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><p>${esc(r.comment)}</p>
+    <div class="row"><button class="bg" onclick="rev('${r.id}','Approved')">Approve</button><button class="br" onclick="rev('${r.id}','Rejected')">Reject</button></div></div>`).join('')||'<p>No reviews yet.</p>';
 };
-async function toggleGal(id, v) { await run(async () => { must(await sb.from('completed_order_gallery').update({ is_approved: v }).eq('id', id).select('id')); go('content'); }); }
-async function delGal(id) { if (!confirm('Delete this gallery item?')) return; await run(async () => { must(await sb.from('completed_order_gallery').delete().eq('id', id).select('id')); go('content'); }); }
-function editSvc(id) {
-  const v = SVC.find(x => x.id === id) || {};
-  openDlg(id ? 'Edit service' : 'Add service', `
-    ${inp('vName', 'Name', v.name || '', 'text', 'maxlength="80"')}${ta('vDesc', 'Description', v.description || '')}
-    <div class="two">${inp('vIcon', 'Icon (emoji)', v.icon || '')}${inp('vSort', 'Sort order', v.sort_order ?? SVC.length + 1, 'number')}</div>
-    <div class="f"><label for="vImg">Image (optional)</label><input id="vImg" type="file" accept="image/jpeg,image/png,image/webp,image/svg+xml"></div>
-    <div class="f"><label><input type="checkbox" id="vAct" ${v.is_active === false ? '' : 'checked'}> Visible on website</label></div>
-    <button class="btn" id="vSave">Save</button>`);
-  $('vSave').onclick = e => run(async () => {
-    const row = { name: $('vName').value.trim(), description: $('vDesc').value.trim() || null, icon: $('vIcon').value.trim() || null, sort_order: parseInt($('vSort').value || '0', 10), is_active: $('vAct').checked };
-    if (row.name.length < 2) throw new Error('Enter the service name.');
-    const ip = await uploadMedia($('vImg').files[0], 'services'); if (ip) row.image_path = ip;
-    if (id) must(await sb.from('services').update(row).eq('id', id).select('id'));
-    else must(await sb.from('services').insert(row).select('id'));
-    closeDlg(); toast('Saved.'); go('content');
-  }, e.target);
+async function rev(id,s){if(await run(sb.from('reviews').update({status:s}).eq('id',id),s))go()}
+
+// ---------- complaints ----------
+const CS=['Open','Investigating','Resolved','Rejected'];
+T.complaints=async()=>{
+  const {data,error}=await sb.from('complaints').select('*,orders(order_reference)').order('created_at',{ascending:false}).limit(100);
+  if(error)return fail(error);
+  $('main').innerHTML=data.map(c=>`<form class="card" onsubmit="cmp(event,'${c.id}')"><b>${esc(c.orders?.order_reference)}</b> <span class="pill">${esc(c.status)}</span>
+    <p>${esc(c.description)}</p><small>${esc(c.customer_name)} · ${esc(c.contact)} · ${D(c.created_at)}</small>
+    <div style="margin-top:8px">${S('status','Status',CS,c.status)}${TA('investigation_notes','Investigation notes',c.investigation_notes)}${TA('resolution_notes','Resolution notes',c.resolution_notes)}${NF('refund_amount','Refund (₦)',c.refund_amount)}</div>
+    <button class="b">Save</button></form>`).join('')||'<p>No complaints.</p>';
+};
+async function cmp(e,id){const f=fd(e);if(await run(sb.from('complaints').update({status:f.status,investigation_notes:f.investigation_notes||null,resolution_notes:f.resolution_notes||null,refund_amount:num(f.refund_amount)||0}).eq('id',id),'Saved'))go()}
+
+// ---------- services ----------
+const sf=s=>`<form class="card" onsubmit="saveSvc(event,'${s?s.id:''}')"><h3>${s?esc(s.name):'Add service'}</h3>
+  ${F('name','Name',s?.name,'text','required minlength="2"')}${TA('description','Description',s?.description)}
+  <div class="row">${F('icon','Icon (emoji)',s?.icon)}${F('sort_order','Sort order',s?s.sort_order:0,'number')}</div>
+  <label class="chk"><input type="checkbox" name="is_active"${!s||s.is_active?' checked':''}> Visible to students</label>
+  <button class="b">${s?'Save':'Add service'}</button></form>`;
+T.services=async()=>{
+  const {data,error}=await sb.from('services').select('*').order('sort_order');
+  if(error)return fail(error);
+  $('main').innerHTML=sf(null)+data.map(sf).join('');
+};
+async function saveSvc(e,id){
+  const f=fd(e);
+  const row={name:f.name,description:f.description||null,icon:f.icon||null,sort_order:parseInt(f.sort_order,10)||0,is_active:!!f.is_active};
+  if(await run(id?sb.from('services').update(row).eq('id',id):sb.from('services').insert(row),'Saved'))go();
 }
 
-// ---------------- PRICING ----------------
-loaders.pricing = async () => {
-  const rows = must(await sb.from('commission_settings').select('*').order('created_at', { ascending: false }).limit(20));
-  const a = rows.find(r => r.is_active) || {};
-  $('main').innerHTML = `<h2>Pricing Settings</h2>
-  <div class="card"><p class="muted" style="margin-bottom:10px">Service fee = product cost × percentage, never below the minimum fee. Changes apply to future quotes only. Past quotes keep their own frozen values.</p>
-    <div class="two">${inp('cPct', 'Commission (%)', a.commission_percent ?? 20, 'number', 'min="0" max="100" step="0.01"')}${inp('cMin', 'Minimum fee (₦)', a.minimum_fee ?? 100, 'number', 'min="0" step="0.01"')}</div>
-    <div class="two">${inp('cAdm', 'Administrator share (%)', a.admin_share_percent ?? '', 'number', 'min="0" max="100" step="0.01"')}${inp('cDel', 'Delivery person share (%)', a.delivery_share_percent ?? '', 'number', 'min="0" max="100" step="0.01"')}</div>
-    ${a.admin_share_percent == null ? '<p class="muted" style="color:var(--red);margin-bottom:8px">Shares are not set. Quotes cannot be confirmed until you save them.</p>' : ''}
-    <button class="btn" id="cSaveP">Save settings</button></div>
-  <div class="card tw"><h3 style="margin-top:0">History</h3><table><thead><tr><th>Date</th><th>Commission</th><th>Min fee</th><th>Admin / Delivery</th><th></th></tr></thead><tbody>${rows.map(r => `<tr><td>${when(r.created_at)}</td><td>${r.commission_percent}%</td><td>${naira(r.minimum_fee)}</td><td>${r.admin_share_percent ?? '—'} / ${r.delivery_share_percent ?? '—'}</td><td>${r.is_active ? '<span class="pill g">Active</span>' : ''}</td></tr>`).join('')}</tbody></table></div>`;
-  $('cAdm').oninput = () => { const v = parseFloat($('cAdm').value); if (v >= 0 && v <= 100) $('cDel').value = +(100 - v).toFixed(2); };
-  $('cDel').oninput = () => { const v = parseFloat($('cDel').value); if (v >= 0 && v <= 100) $('cAdm').value = +(100 - v).toFixed(2); };
-  $('cSaveP').onclick = e => run(async () => {
-    const p = parseFloat($('cPct').value), m = parseFloat($('cMin').value), ad = parseFloat($('cAdm').value), dl = parseFloat($('cDel').value);
-    if ([p, m, ad, dl].some(isNaN)) throw new Error('Fill in all four fields.');
-    if (Math.abs(ad + dl - 100) > 0.001) throw new Error('Shares must add up to 100.');
-    must(await sb.rpc('save_commission_settings', { p_percent: p, p_min_fee: m, p_admin_share: ad, p_delivery_share: dl }));
-    toast('Pricing saved.'); go('pricing');
-  }, $('cSaveP'));
+// ---------- site settings ----------
+T.settings=async()=>{
+  const {data:s,error}=await sb.from('site_settings').select('*').eq('id',1).maybeSingle();
+  if(error)return fail(error);
+  $('main').innerHTML=`<form class="card" onsubmit="saveSite(event)"><h3>Website settings</h3>
+    ${F('business_name','Business name',s?.business_name)}${F('announcement','Announcement banner (blank = hidden)',s?.announcement)}
+    ${F('hero_headline','Home headline',s?.hero_headline)}${TA('hero_subtext','Home subtext',s?.hero_subtext)}
+    ${F('whatsapp_number','WhatsApp number (e.g. 2348012345678)',s?.whatsapp_number,'tel')}${F('phone_number','Phone number',s?.phone_number,'tel')}
+    ${F('contact_email','Contact email',s?.contact_email,'email')}${F('contact_address','Address',s?.contact_address)}
+    ${TA('privacy_policy','Privacy policy',s?.privacy_policy)}${TA('terms_conditions','Terms and conditions',s?.terms_conditions)}
+    <button class="b">Save</button></form>`;
+};
+async function saveSite(e){
+  const f=fd(e);
+  for(const k in f)if(f[k]==='')f[k]=null;
+  ['business_name','hero_headline','hero_subtext'].forEach(k=>{if(f[k]===null)delete f[k]});
+  await run(sb.from('site_settings').update(f).eq('id',1),'Saved');
+}
+
+// ---------- activity log ----------
+T.logs=async()=>{
+  const {data,error}=await sb.from('activity_logs').select('action,actor_email,created_at').order('created_at',{ascending:false}).limit(100);
+  if(error)return fail(error);
+  $('main').innerHTML=`<div class="card">${data.map(l=>`<div class="kv"><span>${D(l.created_at)}</span><b>${esc(l.action)}${l.actor_email?' · '+esc(l.actor_email):''}</b></div>`).join('')||'No activity yet.'}</div>`;
 };
 
-// ---------------- ACTIVITY ----------------
-loaders.activity = async () => {
-  const rows = must(await sb.from('activity_logs').select('*').order('created_at', { ascending: false }).limit(200));
-  $('main').innerHTML = `<h2>Activity Log</h2><div class="card tw">${rows.length ? `<table><thead><tr><th>When</th><th>Action</th><th>By</th><th>Details</th></tr></thead><tbody>${rows.map(r => `<tr><td>${when(r.created_at)}</td><td><b>${esc(r.action)}</b></td><td>${esc(r.actor_email || 'Student / system')}</td><td class="muted" style="max-width:320px;word-break:break-word">${esc(JSON.stringify(r.details))}</td></tr>`).join('')}</tbody></table>` : '<p class="empty">No activity yet.</p>'}</div>`;
-};
+boot();
 </script>
 </body>
 </html>
